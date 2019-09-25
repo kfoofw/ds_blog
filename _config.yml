@@ -9,9 +9,9 @@ baseurl: "https://kfoofw.github.io/tryout_blog/" # the subpath of your site, e.g
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Author settings
-author: Adam Neilson # add your name
+author: Kenneth Foo # add your name
 author-pic: adam-face.jpg
-about-author: My name is Adam Neilson. I’m a full-time adventure travel blogger and photographer who’s been exploring the world for over 2 years.
+about-author: My name is Kenneth Foo. I’m a full-time adventure travel blogger and photographer who’s been exploring the world for over 2 years.
 
 # Contact links
 email: kfoofw@gmail.com # Add your Email address
