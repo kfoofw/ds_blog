@@ -7,111 +7,89 @@ img: /post_1/exploitation-exploration.png # Add image post (optional)
 tags: [Data Science, AB Testing, Explore vs Exploit, MAB]
 author: Kenneth Foo # Add name author (optional)
 ---
-# <ins>Explore vs Exploit Dilemma in Multi-Armed Bandits</ins>
+Welcome back to my second blog post on the __Explore versus Exploit__ dilemma. To further highlight that concept, we will be using a case study of A/B testing optimisation.
 
-What is the "Explore versus Exploit" dilemma about? What does it have to do with "Multi Armed Bandits"? Although these terms sound unappealingly technical, it is actually an intuitive framework to understand decision making. Let's start by asking ourselves: Where should you have your next meal at?
+As a recap, "explore versus exploit" is part of a decision-making framework under limited resources. Each unit of resource can be spent either on exploring to obtain more information on the performance of a version (in A/B testing context), or on exploiting the version that has the best performance. With optimisation, one can minimise the wasted resources spent on a lower yielding version, and investing more in the higher performance version.
 
-### <ins>Where do I eat at?</ins>
+Today's topic will cover a possible research scenario for a mobile company looking at optimising their AB testing methodology. 
 
-Deciding where to dine at has always been one of the biggest decisions (or at least mine) in our daily lives. Back at home, you have a good sense of which restaurants are best suited to your liking, and which to avoid at all costs. Your knowledge of the local restaurant landscape is largely complete, and relying on your prior experiences, you return to those restaurants that have provided an overall good dining experience repeatedly. Once in a while, when a new restaurant pops up, you can decide if you wish to explore it. If it turns out good, you can add it to your list of top 10 restaurants.
+__Data:__  
+The dataset "cookie-cats.csv" was obtained from a Kaggle Public Dataset upload (https://www.kaggle.com/yufengsui/mobile-games-ab-testing/). It originated from a project task under Datacamp (https://www.datacamp.com/projects/184) as part of a typical AB testing project. However, my goal is different as I wish to optimise the AB testing methodology using algorithms.
 
-![Should I enter the restaurant?]({{site.baseurl}}/assets/img/post_1/restaurant.jpg)
+__Background/Description of dataset:__
+- User data was captured from a game called Cookie Cats, which has a typical progression in which users solves the puzzle on each stage to progress. 
+- The dataset was originally for an A/B testing of a control versus variant version. The difference between both versions involves the placement of a "gate" at either Stage 30 or Stage 40 of a user's progression. 
+- Placing a gate at a certain stage will force the user to choose between the following actions:
+    - Wait for some time before they can progress
+    - To make an in-app purchase and immediately resume their game progression.
+- Descriptions of the columns data are as shown:
+    - "userid": Unique user IDs for tracking their behaviour. Each user is treated as an observation.
+    - "version": The label for the control group ("gate_30") versus variant group ("gate_40"). 
+    - "sum_gamerounds": Number of games the user played within the first 14 days.
+    - "retention_1": Boolean data input that represents if a user came back to play 1 day after game installation.
+    - "retention_2": Boolean data input that represents if a user came back to play 7 days after game installation.
+- For this project, I will use "retention_7" as it is a good measure of players returning after an extended period.
+
+__Algorithms__  
+There are 4 algorithms that will be evaluated:  
+- __Random Search:__ Randomised exploration of both versions
+- __Epsilon Greedy:__ Randomised exploration will be done at a standard 5 % (or epsilon) of the time. The remaining 95% will be used to exploit the version with the current highest performance.
+- __Upper Confidence Bound (UCB):__ UCB will favour the version with the highest potential yield. This is defined by the sum of the current average performance with a parameter that accounts for unexplored uncertainty. The value of the parameter decreases with testing progression, which reduces the tendency for exploration.
+- __Thompson Sampling:__ Using the beta distribution, both versions will draw a random sample based on their current beta parameters. This allows for the possibility of exploring low yield versions with high uncertainty, and exploiting high yield versions with low uncertainty. The version with the highest sample results will be favoured. 
+
+__Regret__  
+Evaluating the algorithms will be based on a concept called __regret__. Since "gate_30" has a higher retention rate compared to "gate_40", the "regret" metric can be defined as the __excess number of trials beyond the pure exploitation of the "gate_30" portion of the dataset.__  The lower the value is, the better the performance of the algorithm.
+
+
 <table><tr><td>
-    <span>One of the most common decisions in life: To enter or not to enter?</span>
+    <img src="./imgs/true_yield_comparison.png"/>
     <br>
-    <span>Pic source: https://media1.fdncms.com/pique/imager/u/zoom/3095678/food_epicurious1-1.jpg</span>
+    <span>True yield comparison between both versions</span>
+    <br>
 </td></tr></table>
 
-Now imagine that you are on holiday (or if you are new to Vancouver like I am, this is probably a recent familiar situation) and you're really hungry. The biggest decision you have to make now is: which restaurant are you going to eat at? Every restaurant is unfamiliar, and you have no inkling on which to patronise. Your stomach is grumbling and you decided to pick the nearest one called Restaurant A. Alas, the meal turns out tasting awful and the memory of this regretful dining experience is etched deeply in your mind. At your next meal, you avoid Restaurant A, and explore newer restaurants in the hope of a better culinary experience.
+__Simulation Methodology__  
+Each algorithm was simulated with 3 sets of 10 simulations:  
+- Each set represented simulations with varying ratios of the overall data (namely, 25%, 50%, and 100%). 
+- Across each set of 10 simulations, seeds were varied to provide 10 randomised datasets. Every algorithm faced the same randomised dataset in each iteration to ensure fairness of the experiment.
 
-Does this sound familiar? You have just experienced the __Explore__ vs __Exploit__ dilemma.
+__Analysis__  
+Both Random Search and UCB performed on a poorer scale compared to Epsilon-Greedy and Thompson Sampling across varying dataset sizes. 
 
-### <ins>A/B Testing</ins>
+The algorithm with the least amount of regret based on the full data set is the Thompson Sampling algorithm with an average of 8983. However, the Epsilon-
+Greedy algorithm is not far behind with an average of 9966. In fact, with smaller datasets (25% and 50%), Epsilon-Greedy outperforms Thompson Sampling. An explanation could be that with a smaller dataset, there is still high uncertainty on both versions' performance in the context of Thompson Sampling, and thus it tends to be in the "exploration" mode. With a bigger dataset, the Thompson Sampling algorithm will eventually switch to an "exploitation" mode which helps it overtake the Epsilon-Greedy algorithm eventually. 
 
-For a better understanding, we can also turn to a real world example that is heavily centered on the explore versus exploit dilemma: __the A/B testing of different website pages__. The term "A/B" may be a bit of a misnomer, as A/B testing can be performed on multiple webpages simultaneously. In commercial applications, the goal is to maximise the traffic or click through rates which would be the objective function. The A/B tests are done with the assumption of limited resources: each website page shown to a specific user is an opportunity cost at the expense of showing other pages. 
+Both algorithms also had relatively more variation in their performance compared to the other two. Epsilon-Greedy tends to suffer from extreme regret if the datasets were randomised to be unfavourable. In a particular case (Simulation 2 of Full dataset), the Epsilon-Greedy algorithm ended with a high regret of around 40,000 rounds. The highest regret among Thompson Sampling simulations (Simulation 4 of Full Dataset) is about 22000, which is almost half of the former. 
 
-![AB testing]({{site.baseurl}}/assets/img/post_1/ab-testing.png)
 <table><tr><td>
-    <span>A/B testing</span>
+    <img src="./imgs/random_search_regret_bar.png"/>
     <br>
-    <span>Pic source: https://www.optimizely.com/optimization-glossary/ab-testing/</span>
+    <span>Random Search Regret Comparisons</span>
+    <br>
 </td></tr></table>
 
-There are certain algorithms that are designed to decide which webpage to display to users. In the early part when there is maximum uncertainty about each webpages' yield, the algorithms will tend to invest the resources to __explore__ all webpages. When sufficient information is obtained about all webpages, the algorithm will emphasise on __exploitation__ on webpages that show the best return on average. 
-
-### <ins>Explore versus Exploit in Multi-Armed Bandits</ins>
-
-The "explore versus exploit dilemma" is commonly found in use with another concept called "multi-armed bandits" (MABs). These __"bandits"__ are essentially the webpages/restaurants, and each __"interaction"__ with them provides a chance of obtaining a __"reward"__. Each round of reward (or failure to get it) provides information on the bandits, and this update is used for the next round of decision making. As the experiments progress, __sequential__ decisions have to be made on allocating __resources__ between:
-- Exploring (if the value of information to be gained is high under high uncertainty) 
-- Exploiting (to secure gains by interacting with the best "bandit" based on current knowledge).  
-
-Ultimately, the end goal is to maximise accumulated rewards under limited resources.
-
-For a clearer illustration, the following table illustrates the technical labels in the above mentioned analogy and example:
-
-|Technical Term| Restaurant Choice | Webpage A/B Testing | 
-|--------------|-------------------|---------------------|
-|Bandits | Restaurants | Webpages |
-|Interaction| Dining at restaurant| Displaying webpage to user|
-|Reward| If the meal was good | If the user clicks through |
-|Resource Unit| Every meal | One web user's traffic |
-
-### <ins>Uncertainty and its role in MABs optimisation</ins>
-
-You may wonder how uncertainty is accounted for when it comes to real world examples such as in commercial A/B applications. The following picture showcases a simple MAB experiment with a specific algorithm. In this example taken from Data Origami [^1], the simulation was done with 3 bandits of varying reward probabilities (0.6, 0.75, 0.85) and the true values are represented by the dotted vertical lines. 
-
-![Uncertainty Visualisation](/assets/img/post_1/uncertainty-visualisation.png)
 <table><tr><td>
-    <span>Progression of a multi-armed bandits experiment</span>
+    <img src="./imgs/epsg_regret_bar.png"/>
     <br>
-    <span>Pic source: https://dataorigami.net/blogs/napkin-folding/79031811-multi-armed-bandits</span>
+    <span>Epsilon-Greedy Regret Comparisons</span>
+    <br>
 </td></tr></table>
 
-Each "pull" represents an interaction iteration and results in reward information. Although not shown, at the start of the whole experiment, we have no information about all 3 bandits. This __uncertainty__ is represented by a uniform distribution for all 3 bandits. As more pulls are performed through exploration, we obtain information about individual bandits, which is used to update their probability distribution by reduction of variance (or width/spread). 
-
-After 1000 pulls, we can observe that the algorithm has fully transited into exploitation mode. Also worth noting is that the variance/spread of the varying bandits distributions are different at the end. Thus, during the progression, the algorithm decided that although it may have some level of uncertainty regarding certain bandits (particularly the 0.60 red coloured one), it knew enough that the poorer performing bandits were not worth allocating any further pulls. The bandit that was exploited the most consequently has the least variance and thus is represented by the thinnest distribution curve. 
-
-### <ins>Algorithms</ins>
-
-There are several algorithms available for MABs optimisation but I will briefly describe just two of them:
-
-#### 1.  Selection
-Random selection involves randomly choosing bandits for interaction. There is no consideration of past performance, which intuitively means that doing so will not optimally help attain the maximum cumulative gains, and there is no guarantee that we will converge onto the best performer in the long run.
-
-#### 2. Epsilon Greedy 
-Epsilon greedy involves setting aside a $\epsilon$ percentage of all interactions for exploration and $1-\epsilon$ for exploitation of the best known performer bandit. Given sufficient trials, we can eventually converge onto the best performer. However, the question is: can we get there faster?
-
-Other algorithms that provide better performance than the above mentioned two (and definitely worth reading up on) include:
-- Upper Confidence Bound (UCB)
-- Thompson Sampling 
-
-### <ins>Regret</ins>
-
-In tandem with the explicit goal of maximising accumulated gains in the long run, there is also the implicit concept of __regret__. Regret, or rather _cumulative regret_, represents the difference between the current rewards obtained from chosen actions versus the maximal rewards obtained if one had always chosen the best performer right from the start. Thus, the lower the cumulative regret, the better optimisation performance the algorithm will have. Using regret as a metric, one can assess the effectiveness of various algorithms as shown below[^2].
-
-![Regret Comparison](/assets/img/post_1/regret-comparison.png)
 <table><tr><td>
-    <span>Cumulative regret comparison among various algorithms </span>
+    <img src="./imgs/ucb_regret_bar.png"/>
     <br>
-    <span>Pic source: https://dataorigami.net/blogs/napkin-folding/79031811-multi-armed-bandits</span>
+    <span>UCB Regret Comparisons</span>
+    <br>
 </td></tr></table>
 
-### <ins>Assumptions</ins>
+<table><tr><td>
+    <img src="./imgs/thom_regret_bar.png"/>
+    <br>
+    <span>Thompson Sampling Regret Comparisons</span>
+    <br>
+</td></tr></table>
 
-One key assumption about MABs is that the bandits reward functions are __static__ or __stationary__ for the period of experimentation. In the real world, this may not be the case. For example, certain webpages may be linked to topical objects like fashion clothing. Under such circumstances, the "reward return" will change with time and the results of your A/B testing may become obsolete. Consequently, one would have to constantly evaluate the validity of past results, and take action to create more "bandit" alternatives. 
+__Conclusion__  
+Based on the simulation methodology, it seems like Thompson Sampling is the best optimisation algorithm for a large dataset. Firstly, it tends to perform very well in terms of regret minimisation across the size of the data sets. Secondly, although it has large variations in its regret, it does not suffer badly across randomised datasets variation. 
 
-Another practical assumption about applying algorithms to the MABs problem for optimisation is that the __reward system feedback needs to be quick__. Unfortunately, not all A/B testing contexts meet that prerequisite. For example, clinical trials of drugs for diseases often involve prevention of death in patients. Some drugs may take a few months or years to show effect, but the inherent slow feedback loop prevents sequential evaluation by an algorithm.
-
-### <ins>Conclusion</ins>
-
-I hope that this article has given you some brief insights on the intuition behind the explore versus exploit dilemma in the context of MABs. This draw similar parallels to our evaluative process of decision making in our daily lives as illustrated by the initial analogy. As this article draws to an end, I urge you to ponder about the next time you decide to try a restaurant and consider if you are "exploring" or "exploiting".
-
-If you are interested in finding out more or discussing this topic, please feel free to reach out to me as I am really passionate about it!
-
-### <ins>Further readings</ins>
-In real world situations, we may not always start off with no information about all bandits. Going back to the analogy of picking a restaurant, we can obtain information from online reviews. This will formulate your prior knowledge, which in Bayesian terminology is termed __priors__. Using suitable priors can often lead you to more informed decision making, just as you may treat Yelp reviews of restaurants as reliable indication of good restaurants before trying them out. After you try the restaurant out, you update your prior knowledge with our own experience, which will help aid us in future meal decisions. This method of using data to update prior knowledge for inference is called __Bayesian inference__ and you can always read more about it.
-
-### <ins>Citations:</ins>
-[^1]: Davidson-Pilon, C. (2013) _Multi-Armed Bandits_, Data Origami, https://dataorigami.net/blogs/napkin-folding/79031811-multi-armed-bandits
-
-[^2]: Davidson-Pilon, C. (2013) _Multi-Armed Bandits_, Data Origami, https://dataorigami.net/blogs/napkin-folding/79031811-multi-armed-bandits
+For a mobile company", these advantages translate into critical benefits in terms of actual deployment for A/B Testing optimisation. It mitigates any risk of extreme poor performance in the event of unfavourable data variation (compared to Epsilon Greedy) and also has much faster convergence to the high performance versions (compared to Random Search and UCB).
