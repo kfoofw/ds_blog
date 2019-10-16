@@ -11,7 +11,7 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 # Author settings
 author: Kenneth Foo Fangwei
 author-pic: kfoo.jpg
-about-author: My name is Kenneth Foo. Originally, from Singapore, I’m an aspiring data scientist currently pursuing my Masters in the University of British Columbia.
+about-author: My name is Kenneth Foo. Originally, from Singapore, I’m an aspiring data scientist currently pursuing my Masters in the University of British Columbia. My current interests are in Multi-Armed Bandit problems, Time Series predictions, Bayesian Networks, and Bayesian Optimisation.
 
 # Contact links
 email: kfoofw@gmail.com # Add your Email address
