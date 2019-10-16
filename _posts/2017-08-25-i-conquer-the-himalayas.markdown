@@ -1,19 +1,125 @@
 ---
 layout: post
 title:  I conquer the Himalayas
-date:   2017-08-25 13:32:20 +0300
+date:   2019-10-15 
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
-img: post-1.jpg # Add image post (optional)
-tags: [Blog, Mountains]
-author: Adam Neilson # Add name author (optional)
+img: /post_1/exploitation-exploration.png # Add image post (optional)
+tags: [Data Science, AB Testing, Explore vs Exploit, MAB]
+author: Kenneth Foo # Add name author (optional)
 ---
-Vaporware snackwave stumptown, small batch tattooed try-hard prism fanny pack 3 wolf moon edison bulb tofu hot chicken vice. Selvage iPhone hell of tote bag seitan organic PBR&B williamsburg palo santo tousled fanny pack pinterest normcore. Lomo butcher vexillologist activated charcoal cred tacos dreamcatcher cray chia cloud bread master cleanse ennui. Copper mug hella iceland occupy venmo. Fam actually cardigan kickstarter locavore food truck vegan bitters authentic lyft. Vaporware listicle keffiyeh adaptogen. Cloud bread stumptown swag la croix polaroid pickled. Next level yuccie four dollar toast polaroid. Portland chicharrones craft beer helvetica 3 wolf moon.
+# <ins>The Explore vs Exploit Dilemma in Multi-Armed Bandits</ins>
 
-Fanny pack wolf asymmetrical PBR&B activated charcoal chia retro iPhone. Everyday carry artisan live-edge bespoke ramps. Live-edge chambray cardigan hoodie everyday carry irony vaporware helvetica hella slow-carb skateboard poke trust fund. Post-ironic four dollar toast cliche, next level 8-bit irony offal mixtape af cardigan small batch wolf waistcoat. Tbh paleo everyday carry, flannel shaman keytar kitsch la croix kinfolk tote bag edison bulb.
+What is the "Explore versus Exploit" dilemma about? What does it have to do with "Multi Armed Bandits"? Although these terms sound unappealingly technical, it is actually an intuitive framework to understand decision making. Let's start by asking ourselves: Where should you have your next meal at?
 
-> Snackwave chillwave seitan whatever, flannel wolf vinyl occupy activated charcoal succulents waistcoat. Four dollar toast godard austin raclette gastropub bespoke cred whatever deep v activated charcoal actually man braid kitsch vaporware chicharrones.
+### <ins>Where do I eat at?</ins>
 
-Taxidermy shaman irony williamsburg bespoke. Freegan ugh mumblecore selfies, shabby chic neutra everyday carry. Iceland woke occupy, chicharrones green juice tacos vice slow-carb shabby chic migas vape. Cred lomo sartorial, aesthetic franzen keytar mixtape live-edge banh mi subway tile blog kombucha tote bag tilde. Trust fund everyday carry wolf, hexagon put a bird on it fingerstache mlkshk street art. Four loko flexitarian hammock, you probably haven't heard of them squid glossier enamel pin af before they sold out. Jianbing narwhal chartreuse helvetica 3 wolf moon quinoa. 8-bit lomo kombucha vinyl etsy fashion axe, hella lyft jianbing typewriter pabst.
+Deciding where to dine at has always been one of the biggest decisions (or at least mine) in our daily lives. Back at home, you have a good sense of which restaurants are best suited to your liking, and which to avoid at all costs. Your knowledge of the local restaurant landscape is largely complete, and relying on your prior experiences, you return to those restaurants that have provided an overall good dining experience repeatedly. Once in a while, when a new restaurant pops up, you can decide if you wish to explore it. If it turns out good, you can add it to your list of top 10 restaurants.
+
+<table><tr><td>
+    <img src="{{site.baseurl}}/assets/img/post_1/restaurant.jpg" width = "650"/>
+    <br>
+    <span>One of the most common decisions in life: To enter or not to enter?</span>
+    <br>
+    <span>Pic source: https://media1.fdncms.com/pique/imager/u/zoom/3095678/food_epicurious1-1.jpg</span>
+</td></tr></table>
+
+Now imagine that you are on holiday (or if you are new to Vancouver like I am, this is probably a recent familiar situation) and you're really hungry. The biggest decision you have to make now is: which restaurant are you going to eat at? Every restaurant is unfamiliar, and you have no inkling on which to patronise. Your stomach is grumbling and you decided to pick the nearest one called Restaurant A. Alas, the meal turns out tasting awful and the memory of this regretful dining experience is etched deeply in your mind. At your next meal, you avoid Restaurant A, and explore newer restaurants in the hope of a better culinary experience.
+
+Does this sound familiar? You have just experienced the __Explore__ vs __Exploit__ dilemma.
+
+### <ins>A/B Testing</ins>
+
+For a better understanding, we can also turn to a real world example that is heavily centered on the explore versus exploit dilemma: __the A/B testing of different website pages__. The term "A/B" may be a bit of a misnomer, as A/B testing can be performed on multiple webpages simultaneously. In commercial applications, the goal is to maximise the traffic or click through rates which would be the objective function. The A/B tests are done with the assumption of limited resources: each website page shown to a specific user is an opportunity cost at the expense of showing other pages. 
+
+<table><tr><td>
+    <img src="{{site.baseurl}}/assets/img/post_1/ab-testing.png" width="650"/>
+    <br>
+    <span>A/B testing</span>
+    <br>
+    <span>Pic source: https://www.optimizely.com/optimization-glossary/ab-testing/</span>
+</td></tr></table>
+
+There are certain algorithms that are designed to decide which webpage to display to users. In the early part when there is maximum uncertainty about each webpages' yield, the algorithms will tend to invest the resources to __explore__ all webpages. When sufficient information is obtained about all webpages, the algorithm will emphasise on __exploitation__ on webpages that show the best return on average. 
+
+### <ins>Explore versus Exploit in Multi-Armed Bandits</ins>
+
+The "explore versus exploit dilemma" is commonly found in use with another concept called "multi-armed bandits" (MABs). These __"bandits"__ are essentially the webpages/restaurants, and each __"interaction"__ with them provides a chance of obtaining a __"reward"__. Each round of reward (or failure to get it) provides information on the bandits, and this update is used for the next round of decision making. As the experiments progress, __sequential__ decisions have to be made on allocating __resources__ between:
+- Exploring (if the value of information to be gained is high under high uncertainty) 
+- Exploiting (to secure gains by interacting with the best "bandit" based on current knowledge).  
+
+Ultimately, the end goal is to maximise accumulated rewards under limited resources.
+
+For a clearer illustration, the following table illustrates the technical labels in the above mentioned analogy and example:
+
+|Technical Term| Restaurant Choice | Webpage A/B Testing | 
+|--------------|-------------------|---------------------|
+|Bandits | Restaurants | Webpages |
+|Interaction| Dining at restaurant| Displaying webpage to user|
+|Reward| If the meal was good | If the user clicks through |
+|Resource Unit| Every meal | One web user's traffic |
+
+### <ins>Uncertainty and its role in MABs optimisation</ins>
+
+You may wonder how uncertainty is accounted for when it comes to real world examples such as in commercial A/B applications. The following picture showcases a simple MAB experiment with a specific algorithm. In this example taken from Data Origami [^1], the simulation was done with 3 bandits of varying reward probabilities (0.6, 0.75, 0.85) and the true values are represented by the dotted vertical lines. 
+
+<table><tr><td>
+    <img src="{{site.baseurl}}/assets/img/post_1/uncertainty-visualisation.png" width="650"/>
+    <br>
+    <span>Progression of a multi-armed bandits experiment</span>
+    <br>
+    <span>Pic source: https://dataorigami.net/blogs/napkin-folding/79031811-multi-armed-bandits</span>
+</td></tr></table>
+
+Each "pull" represents an interaction iteration and results in reward information. Although not shown, at the start of the whole experiment, we have no information about all 3 bandits. This __uncertainty__ is represented by a uniform distribution for all 3 bandits. As more pulls are performed through exploration, we obtain information about individual bandits, which is used to update their probability distribution by reduction of variance (or width/spread). 
+
+After 1000 pulls, we can observe that the algorithm has fully transited into exploitation mode. Also worth noting is that the variance/spread of the varying bandits distributions are different at the end. Thus, during the progression, the algorithm decided that although it may have some level of uncertainty regarding certain bandits (particularly the 0.60 red coloured one), it knew enough that the poorer performing bandits were not worth allocating any further pulls. The bandit that was exploited the most consequently has the least variance and thus is represented by the thinnest distribution curve. 
+
+### <ins>Algorithms</ins>
+
+There are several algorithms available for MABs optimisation but I will briefly describe just two of them:
+
+#### 1.  Selection
+Random selection involves randomly choosing bandits for interaction. There is no consideration of past performance, which intuitively means that doing so will not optimally help attain the maximum cumulative gains, and there is no guarantee that we will converge onto the best performer in the long run.
+
+#### 2. Epsilon Greedy 
+Epsilon greedy involves setting aside a $\epsilon$ percentage of all interactions for exploration and $1-\epsilon$ for exploitation of the best known performer bandit. Given sufficient trials, we can eventually converge onto the best performer. However, the question is: can we get there faster?
+
+Other algorithms that provide better performance than the above mentioned two (and definitely worth reading up on) include:
+- Upper Confidence Bound (UCB)
+- Thompson Sampling 
+
+### <ins>Regret</ins>
+
+In tandem with the explicit goal of maximising accumulated gains in the long run, there is also the implicit concept of __regret__. Regret, or rather _cumulative regret_, represents the difference between the current rewards obtained from chosen actions versus the maximal rewards obtained if one had always chosen the best performer right from the start. Thus, the lower the cumulative regret, the better optimisation performance the algorithm will have. Using regret as a metric, one can assess the effectiveness of various algorithms as shown below[^2].
+
+<table><tr><td>
+    <img src="{{site.baseurl}}/assets/img/post_1/regret-comparison.png" width="650"/>
+    <br>
+    <span>Cumulative regret comparison among various algorithms </span>
+    <br>
+    <span>Pic source: https://dataorigami.net/blogs/napkin-folding/79031811-multi-armed-bandits</span>
+</td></tr></table>
+
+### <ins>Assumptions</ins>
+
+One key assumption about MABs is that the bandits reward functions are __static__ or __stationary__ for the period of experimentation. In the real world, this may not be the case. For example, certain webpages may be linked to topical objects like fashion clothing. Under such circumstances, the "reward return" will change with time and the results of your A/B testing may become obsolete. Consequently, one would have to constantly evaluate the validity of past results, and take action to create more "bandit" alternatives. 
+
+Another practical assumption about applying algorithms to the MABs problem for optimisation is that the __reward system feedback needs to be quick__. Unfortunately, not all A/B testing contexts meet that prerequisite. For example, clinical trials of drugs for diseases often involve prevention of death in patients. Some drugs may take a few months or years to show effect, but the inherent slow feedback loop prevents sequential evaluation by an algorithm.
+
+### <ins>Conclusion</ins>
+
+I hope that this article has given you some brief insights on the intuition behind the explore versus exploit dilemma in the context of MABs. This draw similar parallels to our evaluative process of decision making in our daily lives as illustrated by the initial analogy. As this article draws to an end, I urge you to ponder about the next time you decide to try a restaurant and consider if you are "exploring" or "exploiting".
+
+If you are interested in finding out more or discussing this topic, please feel free to reach out to me as I am really passionate about it!
+
+### <ins>Further readings</ins>
+In real world situations, we may not always start off with no information about all bandits. Going back to the analogy of picking a restaurant, we can obtain information from online reviews. This will formulate your prior knowledge, which in Bayesian terminology is termed __priors__. Using suitable priors can often lead you to more informed decision making, just as you may treat Yelp reviews of restaurants as reliable indication of good restaurants before trying them out. After you try the restaurant out, you update your prior knowledge with our own experience, which will help aid us in future meal decisions. This method of using data to update prior knowledge for inference is called __Bayesian inference__ and you can always read more about it.
+
+### <ins>Citations:</ins>
+[^1]: Davidson-Pilon, C. (2013) _Multi-Armed Bandits_, Data Origami, https://dataorigami.net/blogs/napkin-folding/79031811-multi-armed-bandits
+
+[^2]: Davidson-Pilon, C. (2013) _Multi-Armed Bandits_, Data Origami, https://dataorigami.net/blogs/napkin-folding/79031811-multi-armed-bandits
+
 
 ![Yosh Ginsu]({{site.baseurl}}/assets/img/yosh-ginsu.jpg)
 

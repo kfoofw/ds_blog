@@ -1,4 +1,4 @@
-title: My personal blog - Kenneth Foo
+title: My data science blog - Kenneth Foo
 email: kfoofw@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
@@ -9,15 +9,15 @@ baseurl: "https://kfoofw.github.io/ds_blog/" # the subpath of your site, e.g. /b
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Author settings
-author: Kenneth Foo # add your name
-author-pic: adam-face.jpg
-about-author: My name is Kenneth Foo. I’m a full-time adventure travel blogger and photographer who’s been exploring the world for over 2 years.
+author: Kenneth Foo Fangwei# add your name
+author-pic: kfoo.jpg
+about-author: My name is Kenneth Foo. Originally, from Singapore, I’m an aspiring data scientist currently pursuing my Masters in the University of British Columbia.
 
 # Contact links
 email: kfoofw@gmail.com # Add your Email address
-phone: # Add your Phone number
+phone: +1-236-986-3645 # Add your Phone number
 website: # Add your website, do not add http://
-linkedin: # Add your Linkedin handle
+linkedin: kfoofw # Add your Linkedin handle
 github: kfoofw # Add your Github handle
 twitter:  # Add your Twitter handle
 facebook: # Add your Facebook handle
