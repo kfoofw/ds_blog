@@ -1,4 +1,4 @@
-I"�1<h1 id="explore-vs-exploit-dilemma-in-multi-armed-bandits"><ins>Explore vs Exploit Dilemma in Multi-Armed Bandits</ins></h1>
+I"J1<h1 id="explore-vs-exploit-dilemma-in-multi-armed-bandits"><ins>Explore vs Exploit Dilemma in Multi-Armed Bandits</ins></h1>
 
 <p>What is the “Explore versus Exploit” dilemma about? What does it have to do with “Multi Armed Bandits”? Although these terms sound unappealingly technical, it is actually an intuitive framework to understand decision making. Let’s start by asking ourselves: Where should you have your next meal at?</p>
 
@@ -6,7 +6,7 @@
 
 <p>Deciding where to dine at has always been one of the biggest decisions (or at least mine) in our daily lives. Back at home, you have a good sense of which restaurants are best suited to your liking, and which to avoid at all costs. Your knowledge of the local restaurant landscape is largely complete, and relying on your prior experiences, you return to those restaurants that have provided an overall good dining experience repeatedly. Once in a while, when a new restaurant pops up, you can decide if you wish to explore it. If it turns out good, you can add it to your list of top 10 restaurants.</p>
 
-<p><img src="https://kfoofw.github.io/ds_blog/assets/img/post_1/restaurant.jpg&quot;" alt="Should I enter the restaurant?" /></p>
+<p><img src="/assets/img/post_1/restaurant.jpg" alt="Should I enter the restaurant?" /></p>
 <table><tr><td>
     <span>One of the most common decisions in life: To enter or not to enter?</span>
     <br />
@@ -21,7 +21,7 @@
 
 <p>For a better understanding, we can also turn to a real world example that is heavily centered on the explore versus exploit dilemma: <strong>the A/B testing of different website pages</strong>. The term “A/B” may be a bit of a misnomer, as A/B testing can be performed on multiple webpages simultaneously. In commercial applications, the goal is to maximise the traffic or click through rates which would be the objective function. The A/B tests are done with the assumption of limited resources: each website page shown to a specific user is an opportunity cost at the expense of showing other pages.</p>
 
-<p><img src="https://kfoofw.github.io/ds_blog/assets/img/post_1/ab-testing.png&quot;" alt="AB testing" /></p>
+<p><img src="/assets/img/post_1/ab-testing.png" alt="AB testing" /></p>
 <table><tr><td>
     <span>A/B testing</span>
     <br />
@@ -78,7 +78,7 @@
 
 <p>You may wonder how uncertainty is accounted for when it comes to real world examples such as in commercial A/B applications. The following picture showcases a simple MAB experiment with a specific algorithm. In this example taken from Data Origami <sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>, the simulation was done with 3 bandits of varying reward probabilities (0.6, 0.75, 0.85) and the true values are represented by the dotted vertical lines.</p>
 
-<p><img src="https://kfoofw.github.io/ds_blog/assets/img/post_1/uncertainty-visualisation.png&quot;" alt="Uncertainty Visualisation" /></p>
+<p><img src="/assets/img/post_1/uncertainty-visualisation.png" alt="Uncertainty Visualisation" /></p>
 <table><tr><td>
     <span>Progression of a multi-armed bandits experiment</span>
     <br />
@@ -109,7 +109,7 @@
 
 <p>In tandem with the explicit goal of maximising accumulated gains in the long run, there is also the implicit concept of <strong>regret</strong>. Regret, or rather <em>cumulative regret</em>, represents the difference between the current rewards obtained from chosen actions versus the maximal rewards obtained if one had always chosen the best performer right from the start. Thus, the lower the cumulative regret, the better optimisation performance the algorithm will have. Using regret as a metric, one can assess the effectiveness of various algorithms as shown below<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>.</p>
 
-<p><img src="https://kfoofw.github.io/ds_blog/assets/img/post_1/regret-comparison.png&quot;" alt="Regret Comparison" /></p>
+<p><img src="/assets/img/post_1/regret-comparison.png" alt="Regret Comparison" /></p>
 <table><tr><td>
     <span>Cumulative regret comparison among various algorithms </span>
     <br />

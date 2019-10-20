@@ -1,11 +1,13 @@
 ---
 layout: post
-title:  Explore Versus Exploit
-date:   2019-10-15 
+title:  AB Testing Optimisation with a Toy Dataset
+date:   2019-10-16 
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
-img: /post_1/exploitation-exploration.png # Add image post (optional)
+img: /post_2/thom_pdf.png # Add image post (optional)
 tags: [Data Science, AB Testing, Explore vs Exploit, MAB]
 author: Kenneth Foo # Add name author (optional)
+titleformat: dark
+tagformat: dark
 ---
 Welcome back to my second blog post on the __Explore versus Exploit__ dilemma. To further highlight that concept, we will be using a case study of A/B testing optimisation.
 
@@ -40,13 +42,11 @@ There are 4 algorithms that will be evaluated:
 __Regret__  
 Evaluating the algorithms will be based on a concept called __regret__. Since "gate_30" has a higher retention rate compared to "gate_40", the "regret" metric can be defined as the __excess number of trials beyond the pure exploitation of the "gate_30" portion of the dataset.__  The lower the value is, the better the performance of the algorithm.
 
-
 <table><tr><td>
-    <img src="./imgs/true_yield_comparison.png"/>
-    <br>
     <span>True yield comparison between both versions</span>
     <br>
 </td></tr></table>
+![True yield comparison]({{site.baseurl}}/assets/img/post_2/true_yield_comparison.png)
 
 __Simulation Methodology__  
 Each algorithm was simulated with 3 sets of 10 simulations:  
@@ -62,32 +62,24 @@ Greedy algorithm is not far behind with an average of 9966. In fact, with smalle
 Both algorithms also had relatively more variation in their performance compared to the other two. Epsilon-Greedy tends to suffer from extreme regret if the datasets were randomised to be unfavourable. In a particular case (Simulation 2 of Full dataset), the Epsilon-Greedy algorithm ended with a high regret of around 40,000 rounds. The highest regret among Thompson Sampling simulations (Simulation 4 of Full Dataset) is about 22000, which is almost half of the former. 
 
 <table><tr><td>
-    <img src="./imgs/random_search_regret_bar.png"/>
-    <br>
     <span>Random Search Regret Comparisons</span>
-    <br>
 </td></tr></table>
+![random search regret]({{site.baseurl}}/assets/img/post_2/random_search_regret_bar.png)
 
 <table><tr><td>
-    <img src="./imgs/epsg_regret_bar.png"/>
-    <br>
     <span>Epsilon-Greedy Regret Comparisons</span>
-    <br>
 </td></tr></table>
+![epsg regret]({{site.baseurl}}/assets/img/post_2/epsg_regret_bar.png)
 
 <table><tr><td>
-    <img src="./imgs/ucb_regret_bar.png"/>
-    <br>
     <span>UCB Regret Comparisons</span>
-    <br>
 </td></tr></table>
+![ucb regret]({{site.baseurl}}/assets/img/post_2/ucb_regret_bar.png)
 
 <table><tr><td>
-    <img src="./imgs/thom_regret_bar.png"/>
-    <br>
     <span>Thompson Sampling Regret Comparisons</span>
-    <br>
 </td></tr></table>
+![Thompson Sampling regret]({{site.baseurl}}/assets/img/post_2/thom_regret_bar.png)
 
 __Conclusion__  
 Based on the simulation methodology, it seems like Thompson Sampling is the best optimisation algorithm for a large dataset. Firstly, it tends to perform very well in terms of regret minimisation across the size of the data sets. Secondly, although it has large variations in its regret, it does not suffer badly across randomised datasets variation. 
