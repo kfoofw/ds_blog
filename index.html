@@ -8,22 +8,26 @@ layout: home-page
       <a href="{{post.url | prepend: site.baseurl}}" class="post-card-image" style="background-image: url( {{ "/assets/img/" | prepend: site.baseurl | append : post.img}} )">
       </a>
 
-      <div class="post-card-body">
-        {% for tag in post.tags %}
-        {% if post.tagformat == "dark" %}
-        <a href="{{site.baseurl}}/tags#{{tag}}" class="tag-dark">|&#32;{{ tag }}</a>
-        {% else %}
-        <a href="{{site.baseurl}}/tags#{{tag}}" class="tag">|&#32;{{ tag }}</a>
-        {% endif %}
-        {% endfor %}
+      <div class="boxed">
+        
+        <div class="post-card-body">
+          {% for tag in post.tags %}
+          {% if post.tagformat == "dark" %}
+          <a href="{{site.baseurl}}/tags#{{tag}}" class="tag-dark">|&#32;{{ tag }}</a>
+          {% else %}
+          <a href="{{site.baseurl}}/tags#{{tag}}" class="tag">|&#32;{{ tag }}</a>
+          {% endif %}
+          {% endfor %}
 
-        {% if post.titleformat == "dark" %}
-        <a href="{{post.url | prepend: site.baseurl}}" class="post-card-link"><h3 class="post-card-title-dark">{{post.title}}</h3></a>
-        {% else %}
-        <a href="{{post.url | prepend: site.baseurl}}" class="post-card-link"><h3 class="post-card-title">{{post.title}}</h3></a>
-        {% endif %}
+          {% if post.titleformat == "dark" %}
+          <a href="{{post.url | prepend: site.baseurl}}" class="post-card-link"><h3 class="post-card-title-dark">{{post.title}}</h3></a>
+          {% else %}
+          <a href="{{post.url | prepend: site.baseurl}}" class="post-card-link"><h3 class="post-card-title">{{post.title}}</h3></a>
+          {% endif %}
+        </div>
+
       </div>
-
+      
     </div>
   </li>
   {% endfor %}
