@@ -67,7 +67,7 @@ alt.Chart(data).mark_bar().encode(
 ).properties(title = "Gender breakdown", height = 100)
 ```
 <p align="center">
-<img src={{site.baseurl}}/assets/img/post_3/gender_eda.png /img> 
+<img src="{{site.baseurl}}/assets/img/post_3/gender_eda.png" /img> 
 </p>
 
 What is more interesting to me is also the topic of sexual orientation. 51,606 users identify as straight, 5,573 users identify as gay, and 2,767 identify as bisexual.
