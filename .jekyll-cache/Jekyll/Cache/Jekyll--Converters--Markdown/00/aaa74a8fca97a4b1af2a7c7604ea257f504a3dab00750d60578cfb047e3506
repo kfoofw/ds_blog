@@ -1,0 +1,153 @@
+I">1<h1 id="explore-vs-exploit-dilemma-in-multi-armed-bandits"><ins>Explore vs Exploit Dilemma in Multi-Armed Bandits</ins></h1>
+
+<p>What is the “Explore versus Exploit” dilemma about? What does it have to do with “Multi Armed Bandits”? Although these terms sound unappealingly technical, it is actually an intuitive framework to understand decision making. Let’s start by asking ourselves: Where should you have your next meal at?</p>
+
+<h3 id="where-do-i-eat-at"><ins>Where do I eat at?</ins></h3>
+
+<p>Deciding where to dine at has always been one of the biggest decisions (or at least mine) in our daily lives. Back at home, you have a good sense of which restaurants are best suited to your liking, and which to avoid at all costs. Your knowledge of the local restaurant landscape is largely complete, and relying on your prior experiences, you return to those restaurants that have provided an overall good dining experience repeatedly. Once in a while, when a new restaurant pops up, you can decide if you wish to explore it. If it turns out good, you can add it to your list of top 10 restaurants.</p>
+
+<p><img src="/assets/img/post_1/restaurant.jpg" alt="Should I enter the restaurant?" /></p>
+<table><tr><td>
+    <span>One of the most common decisions in life: To enter or not to enter?</span>
+    <br />
+    <span>Pic source: https://media1.fdncms.com/pique/imager/u/zoom/3095678/food_epicurious1-1.jpg</span>
+</td></tr></table>
+
+<p>Now imagine that you are on holiday (or if you are new to Vancouver like I am, this is probably a recent familiar situation) and you’re really hungry. The biggest decision you have to make now is: which restaurant are you going to eat at? Every restaurant is unfamiliar, and you have no inkling on which to patronise. Your stomach is grumbling and you decided to pick the nearest one called Restaurant A. Alas, the meal turns out tasting awful and the memory of this regretful dining experience is etched deeply in your mind. At your next meal, you avoid Restaurant A, and explore newer restaurants in the hope of a better culinary experience.</p>
+
+<p>Does this sound familiar? You have just experienced the <strong>Explore</strong> vs <strong>Exploit</strong> dilemma.</p>
+
+<h3 id="ab-testing"><ins>A/B Testing</ins></h3>
+
+<p>For a better understanding, we can also turn to a real world example that is heavily centered on the explore versus exploit dilemma: <strong>the A/B testing of different website pages</strong>. The term “A/B” may be a bit of a misnomer, as A/B testing can be performed on multiple webpages simultaneously. In commercial applications, the goal is to maximise the traffic or click through rates which would be the objective function. The A/B tests are done with the assumption of limited resources: each website page shown to a specific user is an opportunity cost at the expense of showing other pages.</p>
+
+<p align="center">
+  <img src="/assets/img/post_1/ab-testing.png" /> 
+</p>
+<table><tr><td>
+    <span>A/B testing</span>
+    <br />
+    <span>Pic source: https://www.optimizely.com/optimization-glossary/ab-testing/</span>
+</td></tr></table>
+
+<p>There are certain algorithms that are designed to decide which webpage to display to users. In the early part when there is maximum uncertainty about each webpages’ yield, the algorithms will tend to invest the resources to <strong>explore</strong> all webpages. When sufficient information is obtained about all webpages, the algorithm will emphasise on <strong>exploitation</strong> on webpages that show the best return on average.</p>
+
+<h3 id="explore-versus-exploit-in-multi-armed-bandits"><ins>Explore versus Exploit in Multi-Armed Bandits</ins></h3>
+
+<p>The “explore versus exploit dilemma” is commonly found in use with another concept called “multi-armed bandits” (MABs). These <strong>“bandits”</strong> are essentially the webpages/restaurants, and each <strong>“interaction”</strong> with them provides a chance of obtaining a <strong>“reward”</strong>. Each round of reward (or failure to get it) provides information on the bandits, and this update is used for the next round of decision making. As the experiments progress, <strong>sequential</strong> decisions have to be made on allocating <strong>resources</strong> between:</p>
+<ul>
+  <li>Exploring (if the value of information to be gained is high under high uncertainty)</li>
+  <li>Exploiting (to secure gains by interacting with the best “bandit” based on current knowledge).</li>
+</ul>
+
+<p>Ultimately, the end goal is to maximise accumulated rewards under limited resources.</p>
+
+<p>For a clearer illustration, the following table illustrates the technical labels in the above mentioned analogy and example:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Technical Term</th>
+      <th>Restaurant Choice</th>
+      <th>Webpage A/B Testing</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Bandits</td>
+      <td>Restaurants</td>
+      <td>Webpages</td>
+    </tr>
+    <tr>
+      <td>Interaction</td>
+      <td>Dining at restaurant</td>
+      <td>Displaying webpage to user</td>
+    </tr>
+    <tr>
+      <td>Reward</td>
+      <td>If the meal was good</td>
+      <td>If the user clicks through</td>
+    </tr>
+    <tr>
+      <td>Resource Unit</td>
+      <td>Every meal</td>
+      <td>One web user’s traffic</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="uncertainty-and-its-role-in-mabs-optimisation"><ins>Uncertainty and its role in MABs optimisation</ins></h3>
+
+<p>You may wonder how uncertainty is accounted for when it comes to real world examples such as in commercial A/B applications. The following picture showcases a simple MAB experiment with a specific algorithm. In this example taken from Data Origami <sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>, the simulation was done with 3 bandits of varying reward probabilities (0.6, 0.75, 0.85) and the true values are represented by the dotted vertical lines.</p>
+
+<p align="center">
+  <img src="/assets/img/post_1/uncertainty-visualisation.png" /> 
+</p>
+
+<table><tr><td>
+    <span>Progression of a multi-armed bandits experiment</span>
+    <br />
+    <span>Pic source: https://dataorigami.net/blogs/napkin-folding/79031811-multi-armed-bandits</span>
+</td></tr></table>
+
+<p>Each “pull” represents an interaction iteration and results in reward information. Although not shown, at the start of the whole experiment, we have no information about all 3 bandits. This <strong>uncertainty</strong> is represented by a uniform distribution for all 3 bandits. As more pulls are performed through exploration, we obtain information about individual bandits, which is used to update their probability distribution by reduction of variance (or width/spread).</p>
+
+<p>After 1000 pulls, we can observe that the algorithm has fully transited into exploitation mode. Also worth noting is that the variance/spread of the varying bandits distributions are different at the end. Thus, during the progression, the algorithm decided that although it may have some level of uncertainty regarding certain bandits (particularly the 0.60 red coloured one), it knew enough that the poorer performing bandits were not worth allocating any further pulls. The bandit that was exploited the most consequently has the least variance and thus is represented by the thinnest distribution curve.</p>
+
+<h3 id="algorithms"><ins>Algorithms</ins></h3>
+
+<p>There are several algorithms available for MABs optimisation but I will briefly describe just two of them:</p>
+
+<h4 id="1--selection">1.  Selection</h4>
+<p>Random selection involves randomly choosing bandits for interaction. There is no consideration of past performance, which intuitively means that doing so will not optimally help attain the maximum cumulative gains, and there is no guarantee that we will converge onto the best performer in the long run.</p>
+
+<h4 id="2-epsilon-greedy">2. Epsilon Greedy</h4>
+<p>Epsilon greedy involves setting aside a $\epsilon$ percentage of all interactions for exploration and $1-\epsilon$ for exploitation of the best known performer bandit. Given sufficient trials, we can eventually converge onto the best performer. However, the question is: can we get there faster?</p>
+
+<p>Other algorithms that provide better performance than the above mentioned two (and definitely worth reading up on) include:</p>
+<ul>
+  <li>Upper Confidence Bound (UCB)</li>
+  <li>Thompson Sampling</li>
+</ul>
+
+<h3 id="regret"><ins>Regret</ins></h3>
+
+<p>In tandem with the explicit goal of maximising accumulated gains in the long run, there is also the implicit concept of <strong>regret</strong>. Regret, or rather <em>cumulative regret</em>, represents the difference between the current rewards obtained from chosen actions versus the maximal rewards obtained if one had always chosen the best performer right from the start. Thus, the lower the cumulative regret, the better optimisation performance the algorithm will have. Using regret as a metric, one can assess the effectiveness of various algorithms as shown below<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>.</p>
+
+<p align="center">
+  <img src="/assets/img/post_1/regret-comparison.png" /> 
+</p>
+<table><tr><td>
+    <span>Cumulative regret comparison among various algorithms </span>
+    <br />
+    <span>Pic source: https://dataorigami.net/blogs/napkin-folding/79031811-multi-armed-bandits</span>
+</td></tr></table>
+
+<h3 id="assumptions"><ins>Assumptions</ins></h3>
+
+<p>One key assumption about MABs is that the bandits reward functions are <strong>static</strong> or <strong>stationary</strong> for the period of experimentation. In the real world, this may not be the case. For example, certain webpages may be linked to topical objects like fashion clothing. Under such circumstances, the “reward return” will change with time and the results of your A/B testing may become obsolete. Consequently, one would have to constantly evaluate the validity of past results, and take action to create more “bandit” alternatives.</p>
+
+<p>Another practical assumption about applying algorithms to the MABs problem for optimisation is that the <strong>reward system feedback needs to be quick</strong>. Unfortunately, not all A/B testing contexts meet that prerequisite. For example, clinical trials of drugs for diseases often involve prevention of death in patients. Some drugs may take a few months or years to show effect, but the inherent slow feedback loop prevents sequential evaluation by an algorithm.</p>
+
+<h3 id="conclusion"><ins>Conclusion</ins></h3>
+
+<p>I hope that this article has given you some brief insights on the intuition behind the explore versus exploit dilemma in the context of MABs. This draw similar parallels to our evaluative process of decision making in our daily lives as illustrated by the initial analogy. As this article draws to an end, I urge you to ponder about the next time you decide to try a restaurant and consider if you are “exploring” or “exploiting”.</p>
+
+<p>If you are interested in finding out more or discussing this topic, please feel free to reach out to me as I am really passionate about it!</p>
+
+<h3 id="further-readings"><ins>Further readings</ins></h3>
+<p>In real world situations, we may not always start off with no information about all bandits. Going back to the analogy of picking a restaurant, we can obtain information from online reviews. This will formulate your prior knowledge, which in Bayesian terminology is termed <strong>priors</strong>. Using suitable priors can often lead you to more informed decision making, just as you may treat Yelp reviews of restaurants as reliable indication of good restaurants before trying them out. After you try the restaurant out, you update your prior knowledge with our own experience, which will help aid us in future meal decisions. This method of using data to update prior knowledge for inference is called <strong>Bayesian inference</strong> and you can always read more about it.</p>
+
+<h3 id="citations"><ins>Citations:</ins></h3>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>Davidson-Pilon, C. (2013) <em>Multi-Armed Bandits</em>, Data Origami, https://dataorigami.net/blogs/napkin-folding/79031811-multi-armed-bandits <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p>Davidson-Pilon, C. (2013) <em>Multi-Armed Bandits</em>, Data Origami, https://dataorigami.net/blogs/napkin-folding/79031811-multi-armed-bandits <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+:ET

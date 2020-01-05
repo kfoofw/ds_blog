@@ -183,7 +183,7 @@ Note that in the final posterior, we have included additional parameters
 to fully represent the hierarchical grouping.
 
 <p align="center">
-<img src="{{site.baseurl}}/assets/img/post_4/BH_model_diagram.png" /img> 
+  <img src="{{site.baseurl}}/assets/img/post_4/BH_model_diagram.png"/> 
 </p>
 
 As shown in the above BH diagram, the posterior is represented by the
@@ -275,7 +275,7 @@ standard deviation of the simulations estimates are ok in this
 case.
 
 <p align="center">
-<img src={{site.baseurl}}/assets/img/post_4/ThreePointers-DiagomegaO.png /img> 
+  <img src="{{site.baseurl}}/assets/img/post_4/ThreePointers-DiagomegaO.png"> 
 </p>
 
 ### Positional-Based Omega Distributions
@@ -292,7 +292,7 @@ text “blocks” each other out (for example as seen in omega\[7\]
 SG).
 
 <p align="center">
-<img src={{site.baseurl}}/assets/img/post_4/ThreePointers-Omega.png /img> 
+  <img src="{{site.baseurl}}/assets/img/post_4/ThreePointers-Omega.png"/> 
 </p>
 
 As expected, big men roles such as Centers and Forwards do have much
@@ -334,7 +334,7 @@ significant difference between the 3 point shooting percentages of C
 versus PGs.
 
 <p align="center">
-<img src={{site.baseurl}}/assets/img/post_4/ThreePointers-OmegaDiff3.png /img> 
+  <img src="{{site.baseurl}}/assets/img/post_4/ThreePointers-OmegaDiff3.png"/> 
 </p>
 
 We can do a similar comparison for PF vs G positions. Note that we
@@ -345,9 +345,8 @@ between the 95% HDI credible interval limits of the difference in
 positional omegas. Thus we cannot conclude that there is a difference
 between the 3 point shooting percentage of PFs versus Gs.
 
-
 <p align="center">
-<img src={{site.baseurl}}/assets/img/post_4/ThreePointers-OmegaDiff5.png /img> 
+  <img src="{{site.baseurl}}/assets/img/post_4/ThreePointers-OmegaDiff5.png"/> 
 </p>
 
 ### Individual Player’s Theta Comparison
@@ -367,10 +366,10 @@ This shrinkage effect is not as evident in James Harden, whose actual 3
 point shooting percentage was 374/1030 = 36.3% compared to the
 positional mode value of 36.6%.
 
-
 <p align="center">
-<img src={{site.baseurl}}/assets/img/post_4/ThreePointers-ThetaDiff1.png /img> 
+  <img src="{{site.baseurl}}/assets/img/post_4/ThreePointers-ThetaDiff1.png"/> 
 </p>
+
 
 It is worth highlighting that the term “shrinkage” may be interpreted
 wrongly. It does not always mean that the value estimated is reduced. In
@@ -390,8 +389,6 @@ information (mode = 26.9%), his estimated shooting percentage is 6.18%.
 <p align="center">
   <img src="{{site.baseurl}}/assets/img/post_4/ThreePointers-ThetaDiff2.png"/> 
 </p>
-
-hello
 
 ## Summary
 

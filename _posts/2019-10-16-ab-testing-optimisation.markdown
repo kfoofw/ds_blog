@@ -46,7 +46,9 @@ Evaluating the algorithms will be based on a concept called __regret__. Since "g
     <span>True yield comparison between both versions</span>
     <br>
 </td></tr></table>
-![True yield comparison]({{site.baseurl}}/assets/img/post_2/true_yield_comparison.png)
+<p align="center">
+  <img src="{{site.baseurl}}/assets/img/post_2/true_yield_comparison.png"/> 
+</p>
 
 __Simulation Methodology__  
 Each algorithm was simulated with 3 sets of 10 simulations:  
@@ -64,22 +66,30 @@ Both algorithms also had relatively more variation in their performance compared
 <table><tr><td>
     <span>Random Search Regret Comparisons</span>
 </td></tr></table>
-![random search regret]({{site.baseurl}}/assets/img/post_2/random_search_regret_bar.png)
+<p align="center">
+  <img src="{{site.baseurl}}/assets/img/post_2/random_search_regret_bar.png"/> 
+</p>
 
 <table><tr><td>
     <span>Epsilon-Greedy Regret Comparisons</span>
 </td></tr></table>
-![epsg regret]({{site.baseurl}}/assets/img/post_2/epsg_regret_bar.png)
+<p align="center">
+  <img src="{{site.baseurl}}/assets/img/post_2/epsg_regret_bar.png"/> 
+</p>
 
 <table><tr><td>
     <span>UCB Regret Comparisons</span>
 </td></tr></table>
-![ucb regret]({{site.baseurl}}/assets/img/post_2/ucb_regret_bar.png)
+<p align="center">
+  <img src="{{site.baseurl}}/assets/img/post_2/ucb_regret_bar.png"/> 
+</p>
 
 <table><tr><td>
     <span>Thompson Sampling Regret Comparisons</span>
 </td></tr></table>
-![Thompson Sampling regret]({{site.baseurl}}/assets/img/post_2/thom_regret_bar.png)
+<p align="center">
+  <img src="{{site.baseurl}}/assets/img/post_2/thom_regret_bar.png"/> 
+</p>
 
 __Conclusion__  
 Based on the simulation methodology, it seems like Thompson Sampling is the best optimisation algorithm for a large dataset. Firstly, it tends to perform very well in terms of regret minimisation across the size of the data sets. Secondly, although it has large variations in its regret, it does not suffer badly across randomised datasets variation. 

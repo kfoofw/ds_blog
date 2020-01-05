@@ -67,7 +67,7 @@ alt.Chart(data).mark_bar().encode(
 ).properties(title = "Gender breakdown", height = 100)
 ```
 <p align="center">
-<img src="{{site.baseurl}}/assets/img/post_3/gender_eda.png" /img> 
+    <img src="{{site.baseurl}}/assets/img/post_3/gender_eda.png"/> 
 </p>
 
 What is more interesting to me is also the topic of sexual orientation. 51,606 users identify as straight, 5,573 users identify as gay, and 2,767 identify as bisexual.
@@ -80,7 +80,7 @@ alt.Chart(data).mark_bar().encode(
 ).properties(title = "Sexual orientation breakdown")
 ```
 <p align="center">
-<img src={{site.baseurl}}/assets/img/post_3/orientation_eda.png /img> 
+    <img src="{{site.baseurl}}/assets/img/post_3/orientation_eda.png"/> 
 </p>
 
 The number of users who identify as bisexuals are the lowest, and is about half the size of users who identify themselves as gay. Let's take a look at the sexual orientation breakdown by gender.
@@ -97,7 +97,7 @@ alt.Chart(data).mark_bar().encode(
 ```
 
 <p align="center">
-<img src={{site.baseurl}}/assets/img/post_3/orientation_by_gender_eda.png /img> 
+    <img src="{{site.baseurl}}/assets/img/post_3/orientation_by_gender_eda.png"/> 
 </p>
 
 An interesting phenomenon is shown: there are more women who identify as bisexuals than women who identify as gays, while the reverse is true for men. Also to note, roughly about 1 in 6 women (roughly 4000 to 24,000 total women) identify as either bisexuals or gays, while for men, the ratio is about 1 in 7 (roughly 5000 to 35,000 total men). 
@@ -113,7 +113,7 @@ alt.Chart(data).mark_bar().encode(
 ```
 
 <p align="center">
-<img src={{site.baseurl}}/assets/img/post_3/orientation_by_gender_eda.png /img> 
+    <img src="{{site.baseurl}}/assets/img/post_3/orientation_by_gender_eda.png"/> 
 </p>
 
 The lowest age is 18 years old while the oldest age is actually 110 years (which is probably an outlier). The mean age is around 32.3 years old. As shown, most of the users are roughly between 20 to 40, with about one-third/one-fourth ranging beyond 40 years old. 
@@ -127,7 +127,7 @@ alt.Chart(data).mark_bar().encode(
 
 
 <p align="center">
-<img src={{site.baseurl}}/assets/img/post_3/income_eda.png /img> 
+    <img src="{{site.baseurl}}/assets/img/post_3/income_eda.png"/> 
 </p>
 
 __Research Questions__
@@ -298,7 +298,7 @@ As shown in the following code, we can configure the particular parameters of th
 ```
 
 <p align="center">
-<img src={{site.baseurl}}/assets/img/post_3/gender_age_research.png /img> 
+    <img src="{{site.baseurl}}/assets/img/post_3/gender_age_research.png"/> 
 </p>
 
 The population pyramid plot gives a good visual sense of the absolute users by gender, which depicts that there tends to be less women than men on OkCupid. To put things into perspective, the overlayed density plots provide a calibrated basis for fair comparison. 
@@ -405,7 +405,7 @@ alt.Chart(data_religion_drinks_group_count).mark_bar().encode(
 )
 ```
 <p align="center">
-<img src={{site.baseurl}}/assets/img/post_3/drinking_religion_1.png /img> 
+    <img src="{{site.baseurl}}/assets/img/post_3/drinking_religion_1.png"/> 
 </p>
 
 Given that drinking habits are on a spectrum and somewhat on a dichotomous scale, I will try to classify them into the following major groups:  
@@ -447,7 +447,7 @@ alt.Chart(data_religion_drinks_group_count).mark_bar().encode(
 )
 ```
 <p align="center">
-<img src={{site.baseurl}}/assets/img/post_3/drinking_religion_2.png /img> 
+    <img src="{{site.baseurl}}/assets/img/post_3/drinking_religion_2.png"/> 
 </p>
 
 Even with the change of colour scheme, it is still insufficient to answer the research question. To take things perhaps even further, we can make some strong assumptions and visually depict the counts of High and Low tendencies of drinking into a binary answer.
@@ -476,7 +476,7 @@ alt.Chart(final_data_religion_drinks_group_count).mark_bar().encode(
 ```
 
 <p align="center">
-<img src={{site.baseurl}}/assets/img/post_3/drinking_religion_3.png /img> 
+    <img src="{{site.baseurl}}/assets/img/post_3/drinking_religion_3.png"/> 
 </p>
 
 Based on my 2nd research question, the users' selection options for drinking habits are ordinal, but based on the semantics used in the options, we can classify them into Lower and Higher Drinking tendencies. Also for reiteration, the comparison is among Non-religious users (Atheist, Agnostics) versus Religious users (Buddhism, Islamism, Catholicism, etc). 
