@@ -1161,7 +1161,7 @@ pre code {
   text-decoration: none;
   font-size: 10px;
   text-transform: uppercase;
-  color:  #fff;
+  color:  #FBDE44FF;
   position: relative;
 }
 
@@ -1177,8 +1177,8 @@ pre code {
 
 .post-card .boxed {
   border: 1px solid #efefef;
-  background-color: #5f8095;
-  /* background-color: #97CAEF;*/
+  background-color: #28334AFF;
+  /* background-color: #97CAEF #5f8095;*/
   width: 100%;
   height: 100px;
 }

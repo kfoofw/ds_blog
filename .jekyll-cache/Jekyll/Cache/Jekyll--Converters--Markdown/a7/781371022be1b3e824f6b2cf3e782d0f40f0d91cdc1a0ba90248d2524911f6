@@ -1,6 +1,5 @@
-I"3Q<p>With the data from the ESPN NBA website for the regular NBA season of
-2018-2019, I will try to model Bayesian Hierarchical modelling to find
-out the 3 point percentages across the different basketball positions.</p>
+I"�L<p>With the data from the ESPN NBA website for the regular NBA season of
+2018-2019, I will apply Bayesian Hierarchical modelling on the 3 point percentages across the different basketball positions.</p>
 
 <p>The ESPN dataset comprises of players stats with player position
 assignment as listed in the following:</p>
@@ -23,7 +22,7 @@ repeated 3 point attempts, the collection of 3 points shots made out of
 N attempts becomes a Binomial distribution based on the player’s θ and
 the number of attempts he makes N.</p>
 
-<h2 id="simple-modelling">Simple Modelling</h2>
+<h2 id="bayes-modelling">Bayes Modelling</h2>
 
 <p>Consider the base case in which every player can be treated as an
 individual with a 3 point shooting skill set. As with any typical
@@ -33,27 +32,24 @@ players with poor 3 point shooting skills (and thus a low θ).</p>
 
 <p>This can be represented by the following:</p>
 
-<p><img src="https://latex.codecogs.com/png.latex?%0AP%28%5Ctheta%7CY%29%20%3D%20%5Cfrac%7BP%28Y%20%7C%20%5Ctheta%29%20P%28%5Ctheta%29%7D%7BP%28Y%29%7D%0A" alt="
-P(\theta|Y) = \frac{P(Y | \theta) P(\theta)}{P(Y)}
-" title="
-P(\\theta|Y) = \\frac{P(Y | \\theta) P(\\theta)}{P(Y)}
-" /></p>
+<p align="center">
+  <img src="https://latex.codecogs.com/png.latex?%0AP%28%5Ctheta%7CY%29%20%3D%20%5Cfrac%7BP%28Y%20%7C%20%5Ctheta%29%20P%28%5Ctheta%29%7D%7BP%28Y%29%7D%0A" /> 
+</p>
 
 <p>where Y is the data, theta is the parameter of the Bernoulli
 distribution.</p>
 
-<p>For a quick summary on Bayes
-    Rule,</p>
+<p>For a quick summary on Bayes Rule,</p>
 
 <ul>
-  <li><img src="https://latex.codecogs.com/png.latex?P%28%5Ctheta%7CY%29" alt="P(\theta|Y)" title="P(\\theta|Y)" />: the posterior probability/credibility of the theta
+  <li><img src="https://latex.codecogs.com/png.latex?P%28%5Ctheta%7CY%29" alt="P(\theta|Y)" title="P(\\theta|Y)" />: The posterior probability/credibility of the theta
 parameter given the data Y.</li>
   <li><img src="https://latex.codecogs.com/png.latex?P%28Y%20%7C%20%5Ctheta%29" alt="P(Y |
 \theta)" title="P(Y | \\theta)" />: The likelihood of the data given the parameter
 theta</li>
   <li><img src="https://latex.codecogs.com/png.latex?P%28%5Ctheta%29" alt="P(\theta)" title="P(\\theta)" />: The prior/credibility of the parameters without the
 data D</li>
-  <li><img src="https://latex.codecogs.com/png.latex?P%28Y%29" alt="P(Y)" title="P(Y)" />: the
+  <li><img src="https://latex.codecogs.com/png.latex?P%28Y%29" alt="P(Y)" title="P(Y)" />: The
 marginal likelihood</li>
 </ul>
 
@@ -69,33 +65,23 @@ represented by θ, we can integrate another parameter omega ω into the BH
 model, where ω parameterises the skillset distributions for different
 positions.</p>
 
-<p><img src="https://latex.codecogs.com/png.latex?%0AP%28%5Ctheta%2C%20%5Comega%7CY%29%20%3D%20%5Cfrac%7BP%28Y%20%7C%20%5Ctheta%2C%20%5Comega%29%20P%28%5Ctheta%2C%20%5Comega%29%7D%7BP%28Y%29%7D%0A" alt="
-P(\theta, \omega|Y) = \frac{P(Y | \theta, \omega) P(\theta,
-\omega)}{P(Y)}
-" title="
-P(\\theta, \\omega|Y) = \\frac{P(Y | \\theta, \\omega) P(\\theta, \\omega)}{P(Y)}
-" /></p>
+<p align="center">
+  <img src="https://latex.codecogs.com/png.latex?%0AP%28%5Ctheta%2C%20%5Comega%7CY%29%20%3D%20%5Cfrac%7BP%28Y%20%7C%20%5Ctheta%2C%20%5Comega%29%20P%28%5Ctheta%2C%20%5Comega%29%7D%7BP%28Y%29%7D%0A" /> 
+</p>
 
 <p>Given that theta is conditional upon omega, we can perform Markov
-factorisation for the conditional relationship between tehta and omega.
-Thus, the numerator can be represented by the following:</p>
+factorisation for the conditional relationship between theta and omega.
+The numerator can then be represented by the following:</p>
 
-<p><img src="https://latex.codecogs.com/png.latex?%0AP%28Y%20%7C%20%5Ctheta%2C%20%5Comega%29%20P%28%5Ctheta%2C%20%5Comega%29%20%3D%20P%28Y%20%7C%20%5Ctheta%29%20P%28%5Ctheta%20%7C%20%5Comega%29%20P%28%5Comega%29%0A" alt="
-P(Y | \theta, \omega) P(\theta, \omega) = P(Y | \theta) P(\theta |
-\omega) P(\omega)
-" title="
-P(Y | \\theta, \\omega) P(\\theta, \\omega) = P(Y | \\theta) P(\\theta | \\omega) P(\\omega)
-" /><br />
-Thus, the overall posterior can be represented by the following:</p>
+<p align="center">
+  <img src="https://latex.codecogs.com/png.latex?%0AP%28Y%20%7C%20%5Ctheta%2C%20%5Comega%29%20P%28%5Ctheta%2C%20%5Comega%29%20%3D%20P%28Y%20%7C%20%5Ctheta%29%20P%28%5Ctheta%20%7C%20%5Comega%29%20P%28%5Comega%29%0A" /> 
+</p>
 
-<p><img src="https://latex.codecogs.com/png.latex?%0AP%28%5Ctheta%2C%20%5Comega%7CY%29%20%3D%20%5Cfrac%7BP%28Y%20%7C%20%5Ctheta%29%20P%28%5Ctheta%20%7C%20%5Comega%29%20P%28%5Comega%29%7D%7BP%28Y%29%7D%0A" alt="
-P(\theta, \omega|Y) = \frac{P(Y | \theta) P(\theta | \omega)
-P(\omega)}{P(Y)}
-" title="
-P(\\theta, \\omega|Y) = \\frac{P(Y | \\theta) P(\\theta | \\omega) P(\\omega)}{P(Y)}
-" /><br />
-where in this case, omega serves as a kind of prior belief for the
-distribution of theta.</p>
+<p>Thus, the overall posterior can be represented by the following:</p>
+
+<p align="center">
+  <img src="https://latex.codecogs.com/png.latex?%0AP%28%5Ctheta%2C%20%5Comega%7CY%29%20%3D%20%5Cfrac%7BP%28Y%20%7C%20%5Ctheta%29%20P%28%5Ctheta%20%7C%20%5Comega%29%20P%28%5Comega%29%7D%7BP%28Y%29%7D%0A" /> 
+</p>
 
 <h2 id="bayesian-hierarchical-bh-modelling-of-nba-positions">Bayesian Hierarchical (BH) Modelling of NBA Positions</h2>
 
@@ -113,21 +99,22 @@ accurate thetas for the relevant positions since the intra-group
 properties are not “cross-contaminated” or diluted. This can be seen by
 the following formulation:</p>
 
-<p><img src="https://latex.codecogs.com/png.latex?%0AP%28%5Ctheta%2C%20%5Comega_%7Bpos%7D%7CY%29%20%3D%20%5Cfrac%7BP%28Y%20%7C%20%5Ctheta%29%20P%28%5Ctheta%20%7C%20%5Comega_%7Bpos%7D%29%20P%28%5Comega_%7Bpos%7D%29%7D%7BP%28Y%29%7D%0A" alt="
-P(\theta, \omega_{pos}|Y) = \frac{P(Y | \theta) P(\theta |
-\omega_{pos}) P(\omega_{pos})}{P(Y)}
-" title="
-P(\\theta, \\omega_{pos}|Y) = \\frac{P(Y | \\theta) P(\\theta | \\omega_{pos}) P(\\omega_{pos})}{P(Y)}
-" /></p>
+<p align="center">
+  <img src="https://latex.codecogs.com/png.latex?%0AP%28%5Ctheta%2C%20%5Comega_%7Bpos%7D%7CY%29%20%3D%20%5Cfrac%7BP%28Y%20%7C%20%5Ctheta%29%20P%28%5Ctheta%20%7C%20%5Comega_%7Bpos%7D%29%20P%28%5Comega_%7Bpos%7D%29%7D%7BP%28Y%29%7D%0A" /> 
+</p>
 
 <h2 id="choice-of-distributions-for-bh-model">Choice of Distributions for BH Model</h2>
 
 <p>Before we proceed, we need to define the distributions to be
 incorporated into the BH modelling. For this example, we will utilise
-the following distributions: * Bernoulli distribution + Parameterised
-by θ + Limites are 0 and 1</p>
-
+the following distributions:</p>
 <ul>
+  <li>Bernoulli distribution
+    <ul>
+      <li>Parameterised by θ</li>
+      <li>Limits are 0 and 1</li>
+    </ul>
+  </li>
   <li>Binomial distribution
     <ul>
       <li>Parametrised by θ and N</li>
@@ -157,21 +144,15 @@ by θ + Limites are 0 and 1</p>
 <p>To create the model syntax for the distributions, we need to incorporate
 the distributions into the finalised posterior representation as shown:</p>
 
-<p><img src="https://latex.codecogs.com/png.latex?%0AP%28%5Ctheta%2C%20%5Comega_%7Bplayer%7D%2C%20%5Ckappa_%7Bplayer%7D%2C%20%5Comega_%7Bpos%7D%2C%20%5Ckappa_%7Bpos%7D%7CY%29%20%3D%20%5Cfrac%7BP%28Y%20%7C%20%5Ctheta%29%20P%28%5Ctheta%20%7C%20%5Comega_%7Bplayer%7D%2C%20%5Ckappa_%7Bplayer%7D%29%20P%28%5Ckappa_%7Bplayer%7D%29%20P%28%5Comega_%7Bplayer%7D%20%7C%20%5Comega_%7Bpos%7D%2C%20%5Ckappa_%7Bpos%7D%29%20%20P%28%5Comega_%7Bpos%7D%29%20P%28%5Ckappa_%7Bpos%7D%29%7D%7BP%28Y%29%7D%0A" alt="
-P(\theta, \omega_{player}, \kappa_{player}, \omega_{pos},
-\kappa_{pos}|Y) = \frac{P(Y | \theta) P(\theta | \omega_{player},
-\kappa_{player}) P(\kappa_{player}) P(\omega_{player} |
-\omega_{pos}, \kappa_{pos}) P(\omega_{pos})
-P(\kappa_{pos})}{P(Y)}
-" title="
-P(\\theta, \\omega_{player}, \\kappa_{player}, \\omega_{pos}, \\kappa_{pos}|Y) = \\frac{P(Y | \\theta) P(\\theta | \\omega_{player}, \\kappa_{player}) P(\\kappa_{player}) P(\\omega_{player} | \\omega_{pos}, \\kappa_{pos})  P(\\omega_{pos}) P(\\kappa_{pos})}{P(Y)}
-" /></p>
+<p align="center">
+  <img src="https://latex.codecogs.com/png.latex?%0AP%28%5Ctheta%2C%20%5Comega_%7Bplayer%7D%2C%20%5Ckappa_%7Bplayer%7D%2C%20%5Comega_%7Bpos%7D%2C%20%5Ckappa_%7Bpos%7D%7CY%29%20%3D%20%5Cfrac%7BP%28Y%20%7C%20%5Ctheta%29%20P%28%5Ctheta%20%7C%20%5Comega_%7Bplayer%7D%2C%20%5Ckappa_%7Bplayer%7D%29%20P%28%5Ckappa_%7Bplayer%7D%29%20P%28%5Comega_%7Bplayer%7D%20%7C%20%5Comega_%7Bpos%7D%2C%20%5Ckappa_%7Bpos%7D%29%20%20P%28%5Comega_%7Bpos%7D%29%20P%28%5Ckappa_%7Bpos%7D%29%7D%7BP%28Y%29%7D%0A" /> 
+</p>
 
 <p>Note that in the final posterior, we have included additional parameters
 to fully represent the hierarchical grouping.</p>
 
 <p align="center">
-&lt;img src=/assets/img/post_4/BH_model_diagram.png /img&gt; 
+  <img src="/assets/img/post_4/BH_model_diagram.png" /> 
 </p>
 
 <p>As shown in the above BH diagram, the posterior is represented by the
@@ -179,8 +160,7 @@ following distributions:</p>
 
 <ul>
   <li>Each player’s 3 point shooting trial is represented by a Bernoulli
-distribution parameterised by
-    θ
+distribution parameterised by θ
     <ul>
       <li>
         <table>
@@ -268,15 +248,16 @@ thinning in 100-steps intervals to reduce auto-correlation.</p>
 <h3 id="overall-distribution-for-omega">Overall Distribution for Omega</h3>
 
 <p>The parameter “omegaO” represents the overall prior Beta distribution
-from which the omega_pos parameters are generated. * The top right
-graph show that there is a moderate effective sample size (ESS) of 4802.
-The rule of thumb should be around at least 10,000 in order for the high
+from which the omega_pos parameters are generated.</p>
+<ul>
+  <li>The top right graph show that there is a moderate effective sample size (ESS) of 4802. The rule of thumb should be around at least 10,000 in order for the high
 density intervals (HDI) quantile limits to be trusted, but at above
-3000, the estimated mean/mode of the distribution is still reliable. *
-The top left graph shows the exploration of the 3 MCMC chains across the
+3000, the estimated mean/mode of the distribution is still reliable.</li>
+  <li>The top left graph shows the exploration of the 3 MCMC chains across the
 parameter spectrum, and we can observe that the chains did sufficient
 exploration (remember that omega is from a Beta distribution of limits 0
-and 1). * The bottom left chart depicts the Gelman plot, which is a
+and 1).</li>
+  <li>The bottom left chart depicts the Gelman plot, which is a
 diagnostic for comparing the variance across chains against the variance
 within each chain. Basically, the Gelman-Rubin measures a value called
 “scale reduction factor” that represents if there is a significant
@@ -284,16 +265,17 @@ difference between the variance within several chains and the variance
 between several chains. If the scale factor is above 1.1, it shows that
 some of the MCMC chains might have gotten stuck and may not have
 converged correctly. In our case, the scale factors are close to 1.0,
-which indicates convergence of the chains. * The bottom right chart
-depicts the density chart for each chains. Since all chains have similar
+which indicates convergence of the chains.</li>
+  <li>The bottom right chart depicts the density chart for each chains. Since all chains have similar
 densities, we can deduce that the simulations corroborated each other.
 The stated MCSE represents the estimated SD of the sample mean in the
 chain, on the scale of the parameter value. Since MCSE is small, the
 standard deviation of the simulations estimates are ok in this
-case.</p>
+case.</li>
+</ul>
 
 <p align="center">
-&lt;img src=/assets/img/post_4/ThreePointers-DiagomegaO.png /img&gt; 
+  <img src="/assets/img/post_4/ThreePointers-DiagomegaO.png" /> 
 </p>
 
 <h3 id="positional-based-omega-distributions">Positional-Based Omega Distributions</h3>
@@ -310,7 +292,7 @@ text “blocks” each other out (for example as seen in omega[7]
 SG).</p>
 
 <p align="center">
-&lt;img src=/assets/img/post_4/ThreePointers-Omega.png /img&gt; 
+  <img src="/assets/img/post_4/ThreePointers-Omega.png" /> 
 </p>
 
 <p>As expected, big men roles such as Centers and Forwards do have much
@@ -340,7 +322,7 @@ the distribution is actually lower than that of PFs.</p>
 positions.</p>
 
 <p>A simple comparion between Center and PG positions is shown below. The
-plots on the top left and bottom right shows the histogram distributions
+plots on the top left and bottom right show the histogram distributions
 for each position’s omega values, while the plot on the top right shows
 the simulated difference. We can see that for (C - PG), the mode of the
 difference is -0.084. However, this is insufficient for us to conclude
@@ -352,7 +334,7 @@ significant difference between the 3 point shooting percentages of C
 versus PGs.</p>
 
 <p align="center">
-&lt;img src=/assets/img/post_4/ThreePointers-OmegaDiff3.png /img&gt; 
+  <img src="/assets/img/post_4/ThreePointers-OmegaDiff3.png" /> 
 </p>
 
 <p>We can do a similar comparison for PF vs G positions. Note that we
@@ -364,7 +346,7 @@ positional omegas. Thus we cannot conclude that there is a difference
 between the 3 point shooting percentage of PFs versus Gs.</p>
 
 <p align="center">
-&lt;img src=/assets/img/post_4/ThreePointers-OmegaDiff5.png /img&gt; 
+  <img src="/assets/img/post_4/ThreePointers-OmegaDiff5.png" /> 
 </p>
 
 <h3 id="individual-players-theta-comparison">Individual Player’s Theta Comparison</h3>
@@ -385,16 +367,16 @@ point shooting percentage was 374/1030 = 36.3% compared to the
 positional mode value of 36.6%.</p>
 
 <p align="center">
-&lt;img src=/assets/img/post_4/ThreePointers-ThetaDiff1.png /img&gt; 
+  <img src="/assets/img/post_4/ThreePointers-ThetaDiff1.png" /> 
 </p>
 
 <p>It is worth highlighting that the term “shrinkage” may be interpreted
-wrongly. It does not always mean that the value estimated is reduced. In
+wrongly. It does not always mean that the value estimated is reduced; in
 fact it works both ways. For those who have individual modes that are
 below the positional/group mode value, it will increase their estimated
 individual mode. Vice versa for those with individual modes above the
 position/group mode values. The concept of “shrinkage” applies in terms
-of shrinking towards the group value.</p>
+of shrinking towards the group value, which serves as a form of overarching information anchor.</p>
 
 <p>This can be further illustrated by the comparison between Stephen Curry
 and Jusuf Nurkic. Stephen Curry has an shooting percentage of 352/807 =
@@ -404,7 +386,7 @@ Nurkic has made 0 out of 29 attempts, but based on the positional
 information (mode = 26.9%), his estimated shooting percentage is 6.18%.</p>
 
 <p align="center">
-&lt;img src=/assets/img/post_4/ThreePointers-ThetaDiff2.png /img&gt; 
+  <img src="/assets/img/post_4/ThreePointers-ThetaDiff2.png" /> 
 </p>
 
 <h2 id="summary">Summary</h2>
@@ -419,7 +401,10 @@ came a key concept of “shrinkage”, which was also illustrated when we
 compare players within each position and how the positional information
 impacted their estimated shooting percentages.</p>
 
+<h2 id="special-mention">Special Mention</h2>
 <p>A large part of this analysis was based on the book <a href="https://sites.google.com/site/doingbayesiandataanalysis/">Doing Bayesian Data
 Analysis</a> by
 John Kruschke.</p>
+
+<p>The scripts for data scraping and analysis can be found in this <a href="https://github.com/kfoofw/nba_espn">Github repo</a>.</p>
 :ET
