@@ -1104,7 +1104,7 @@ pre code {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0);
 }
 
 .post-card .post-card-body {
@@ -1133,7 +1133,9 @@ pre code {
   text-transform: uppercase;
   font-size: 18px;
   color: #fff; 
-  margin: 0 0 10px;
+  /* Control font*/
+  margin: 0 0 0px;
+  vertical-align: top;
 }
 
 .post-card .post-card-body .post-card-title:hover {
@@ -1160,6 +1162,7 @@ pre code {
   font-size: 10px;
   text-transform: uppercase;
   color:  #fff;
+  position: relative;
 }
 
 .post-card .post-card-body .tag:hover {
@@ -1174,9 +1177,10 @@ pre code {
 
 .post-card .boxed {
   border: 1px solid #efefef;
-  background-color: #97CAEF;
+  background-color: #5f8095;
+  /* background-color: #97CAEF;*/
   width: 100%;
-  height: 75px;
+  height: 100px;
 }
 
 /* = = = = = = = = = = Pagination Styles = = = = = = = = = = */
