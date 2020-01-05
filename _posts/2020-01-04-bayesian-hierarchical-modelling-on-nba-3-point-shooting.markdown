@@ -388,7 +388,7 @@ Nurkic has made 0 out of 29 attempts, but based on the positional
 information (mode = 26.9%), his estimated shooting percentage is 6.18%.
 
 <p align="center">
-<img src="{{site.baseurl}}/assets/img/post_4/ThreePointers-ThetaDiff2.png" /img> 
+  <img src="{{site.baseurl}}/assets/img/post_4/ThreePointers-ThetaDiff2.png" /img> 
 </p>
 
 
