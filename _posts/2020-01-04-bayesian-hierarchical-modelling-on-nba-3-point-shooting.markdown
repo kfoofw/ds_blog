@@ -183,7 +183,7 @@ Note that in the final posterior, we have included additional parameters
 to fully represent the hierarchical grouping.
 
 <p align="center">
-<img src={{site.baseurl}}/assets/img/post_4/BH_model_diagram.png /img> 
+<img src="{{site.baseurl}}/assets/img/post_4/BH_model_diagram.png" /img> 
 </p>
 
 As shown in the above BH diagram, the posterior is represented by the
@@ -387,10 +387,10 @@ his estimated shooting percentage to 41.8%. On the other hand, Jusuf
 Nurkic has made 0 out of 29 attempts, but based on the positional
 information (mode = 26.9%), his estimated shooting percentage is 6.18%.
 
-
 <p align="center">
-<img src={{site.baseurl}}/assets/img/post_4/ThreePointers-ThetaDiff2.png /img> 
+<img src="{{site.baseurl}}/assets/img/post_4/ThreePointers-ThetaDiff2.png" /img> 
 </p>
+
 
 ## Summary
 
