@@ -10,8 +10,7 @@ titleformat: dark
 tagformat: dark
 ---
 With the data from the ESPN NBA website for the regular NBA season of
-2018-2019, I will try to model Bayesian Hierarchical modelling to find
-out the 3 point percentages across the different basketball positions.
+2018-2019, I will apply Bayesian Hierarchical modelling on the 3 point percentages across the different basketball positions.
 
 The ESPN dataset comprises of players stats with player position
 assignment as listed in the following:
@@ -32,7 +31,7 @@ repeated 3 point attempts, the collection of 3 points shots made out of
 N attempts becomes a Binomial distribution based on the player’s θ and
 the number of attempts he makes N.
 
-## Simple Modelling
+## Bayes Modelling
 
 Consider the base case in which every player can be treated as an
 individual with a 3 point shooting skill set. As with any typical
@@ -81,8 +80,8 @@ positions.
 </p>
 
 Given that theta is conditional upon omega, we can perform Markov
-factorisation for the conditional relationship between tehta and omega.
-Thus, the numerator can be represented by the following:
+factorisation for the conditional relationship between theta and omega.
+The numerator can then be represented by the following:
 
 
 <p align="center">
@@ -94,9 +93,6 @@ Thus, the overall posterior can be represented by the following:
 <p align="center">
   <img src="https://latex.codecogs.com/png.latex?%0AP%28%5Ctheta%2C%20%5Comega%7CY%29%20%3D%20%5Cfrac%7BP%28Y%20%7C%20%5Ctheta%29%20P%28%5Ctheta%20%7C%20%5Comega%29%20P%28%5Comega%29%7D%7BP%28Y%29%7D%0A"/> 
 </p>
-
-where in this case, omega serves as a kind of prior belief for the
-distribution of theta.
 
 ## Bayesian Hierarchical (BH) Modelling of NBA Positions
 
@@ -293,7 +289,7 @@ We can also determine the difference in omega values for the different
 positions.
 
 A simple comparion between Center and PG positions is shown below. The
-plots on the top left and bottom right shows the histogram distributions
+plots on the top left and bottom right show the histogram distributions
 for each position’s omega values, while the plot on the top right shows
 the simulated difference. We can see that for (C - PG), the mode of the
 difference is -0.084. However, this is insufficient for us to conclude
@@ -343,12 +339,12 @@ positional mode value of 36.6%.
 
 
 It is worth highlighting that the term “shrinkage” may be interpreted
-wrongly. It does not always mean that the value estimated is reduced. In
+wrongly. It does not always mean that the value estimated is reduced; in
 fact it works both ways. For those who have individual modes that are
 below the positional/group mode value, it will increase their estimated
 individual mode. Vice versa for those with individual modes above the
 position/group mode values. The concept of “shrinkage” applies in terms
-of shrinking towards the group value.
+of shrinking towards the group value, which serves as a form of overarching information anchor.
 
 This can be further illustrated by the comparison between Stephen Curry
 and Jusuf Nurkic. Stephen Curry has an shooting percentage of 352/807 =
