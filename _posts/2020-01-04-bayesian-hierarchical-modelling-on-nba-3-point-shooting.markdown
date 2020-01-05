@@ -51,10 +51,7 @@ P(\\theta|Y) = \\frac{P(Y | \\theta) P(\\theta)}{P(Y)}
 ")  
 
 <p align="center">
-  <img src="https://latex.codecogs.com/png.latex?%0AP%28%5Ctheta%7CY%29%20%3D%20%5Cfrac%7BP%28Y%20%7C%20%5Ctheta%29%20P%28%5Ctheta%29%7D%7BP%28Y%29%7D%0A
-  '
-  P(\\theta|Y) = \\frac{P(Y | \\theta) P(\\theta)}{P(Y)}
-  '"/> 
+  <img src="https://latex.codecogs.com/png.latex?%0AP%28%5Ctheta%7CY%29%20%3D%20%5Cfrac%7BP%28Y%20%7C%20%5Ctheta%29%20P%28%5Ctheta%29%7D%7BP%28Y%29%7D%0A"/> 
 </p>
 
 where Y is the data, theta is the parameter of the Bernoulli
