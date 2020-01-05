@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  Bayesian Hierarchical Modelling of NBA 3 Point Shooting
-date:   2019-11-24
+date:   2020-01-04
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
 img: /post_4/BH_model_diagram.png # Add image post (optional)
 tags: [Data Science, Bayesian Hierarchical Modelling, JAGS, MCMC]
@@ -191,8 +191,8 @@ following distributions:
 
   - Each player’s 3 point shooting trial is represented by a Bernoulli
     distribution parameterised by θ
-      - ![P(Y|\\theta)](https://latex.codecogs.com/png.latex?P%28Y%7C%5Ctheta%29
-        "P(Y|\\theta)")
+      - ![P(Y| \\theta)](https://latex.codecogs.com/png.latex?P%28Y%7C%5Ctheta%29
+        "P(Y| \\theta)")
       - The series of 3 point shootings by each player is a Binomial
         distribution parametrised by θ and number of attempts N. This is
         not formally shown in the diagram.
