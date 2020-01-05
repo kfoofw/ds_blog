@@ -50,14 +50,20 @@ P(\\theta|Y) = \\frac{P(Y | \\theta) P(\\theta)}{P(Y)}
 P(\\theta|Y) = \\frac{P(Y | \\theta) P(\\theta)}{P(Y)}
 ")  
 
+<p align="center">
+  <img src="https://latex.codecogs.com/png.latex?%0AP%28%5Ctheta%7CY%29%20%3D%20%5Cfrac%7BP%28Y%20%7C%20%5Ctheta%29%20P%28%5Ctheta%29%7D%7BP%28Y%29%7D%0A
+  '
+  P(\\theta|Y) = \\frac{P(Y | \\theta) P(\\theta)}{P(Y)}
+  '"/> 
+</p>
+
 where Y is the data, theta is the parameter of the Bernoulli
 distribution.
 
-For a quick summary on Bayes
-    Rule,
+For a quick summary on Bayes Rule,
 
   - ![P(\\theta|Y)](https://latex.codecogs.com/png.latex?P%28%5Ctheta%7CY%29
-    "P(\\theta|Y)"): the posterior probability/credibility of the theta
+    "P(\\theta|Y)"): The posterior probability/credibility of the theta
     parameter given the data Y.  
   - ![P(Y |
     \\theta)](https://latex.codecogs.com/png.latex?P%28Y%20%7C%20%5Ctheta%29
@@ -66,7 +72,7 @@ For a quick summary on Bayes
   - ![P(\\theta)](https://latex.codecogs.com/png.latex?P%28%5Ctheta%29
     "P(\\theta)"): The prior/credibility of the parameters without the
     data D  
-  - ![P(Y)](https://latex.codecogs.com/png.latex?P%28Y%29 "P(Y)"): the
+  - ![P(Y)](https://latex.codecogs.com/png.latex?P%28Y%29 "P(Y)"): The
     marginal likelihood
 
 ## Simple/Naive Bayesian Hierarchical (BH) Modelling
@@ -144,8 +150,10 @@ P(\\theta, \\omega_{pos}|Y) = \\frac{P(Y | \\theta) P(\\theta | \\omega_{pos}) P
 
 Before we proceed, we need to define the distributions to be
 incorporated into the BH modelling. For this example, we will utilise
-the following distributions: \* Bernoulli distribution + Parameterised
-by θ + Limites are 0 and 1
+the following distributions: 
+  - Bernoulli distribution 
+      - Parameterised by θ 
+      - Limits are 0 and 1
 
   - Binomial distribution
       - Parametrised by θ and N
