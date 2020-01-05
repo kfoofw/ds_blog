@@ -42,14 +42,6 @@ players with poor 3 point shooting skills (and thus a low θ).
 
 This can be represented by the following:
 
-  
-![
-P(\\theta|Y) = \\frac{P(Y | \\theta) P(\\theta)}{P(Y)}
-](https://latex.codecogs.com/png.latex?%0AP%28%5Ctheta%7CY%29%20%3D%20%5Cfrac%7BP%28Y%20%7C%20%5Ctheta%29%20P%28%5Ctheta%29%7D%7BP%28Y%29%7D%0A
-"
-P(\\theta|Y) = \\frac{P(Y | \\theta) P(\\theta)}{P(Y)}
-")  
-
 <p align="center">
   <img src="https://latex.codecogs.com/png.latex?%0AP%28%5Ctheta%7CY%29%20%3D%20%5Cfrac%7BP%28Y%20%7C%20%5Ctheta%29%20P%28%5Ctheta%29%7D%7BP%28Y%29%7D%0A"/> 
 </p>
@@ -84,37 +76,25 @@ represented by θ, we can integrate another parameter omega ω into the BH
 model, where ω parameterises the skillset distributions for different
 positions.
 
-  
-![
-P(\\theta, \\omega|Y) = \\frac{P(Y | \\theta, \\omega) P(\\theta,
-\\omega)}{P(Y)}
-](https://latex.codecogs.com/png.latex?%0AP%28%5Ctheta%2C%20%5Comega%7CY%29%20%3D%20%5Cfrac%7BP%28Y%20%7C%20%5Ctheta%2C%20%5Comega%29%20P%28%5Ctheta%2C%20%5Comega%29%7D%7BP%28Y%29%7D%0A
-"
-P(\\theta, \\omega|Y) = \\frac{P(Y | \\theta, \\omega) P(\\theta, \\omega)}{P(Y)}
-")  
+<p align="center">
+  <img src="https://latex.codecogs.com/png.latex?%0AP%28%5Ctheta%2C%20%5Comega%7CY%29%20%3D%20%5Cfrac%7BP%28Y%20%7C%20%5Ctheta%2C%20%5Comega%29%20P%28%5Ctheta%2C%20%5Comega%29%7D%7BP%28Y%29%7D%0A"/> 
+</p>
 
 Given that theta is conditional upon omega, we can perform Markov
 factorisation for the conditional relationship between tehta and omega.
 Thus, the numerator can be represented by the following:
 
+
+<p align="center">
+  <img src="https://latex.codecogs.com/png.latex?%0AP%28Y%20%7C%20%5Ctheta%2C%20%5Comega%29%20P%28%5Ctheta%2C%20%5Comega%29%20%3D%20P%28Y%20%7C%20%5Ctheta%29%20P%28%5Ctheta%20%7C%20%5Comega%29%20P%28%5Comega%29%0A"/> 
+</p>
   
-![
-P(Y | \\theta, \\omega) P(\\theta, \\omega) = P(Y | \\theta) P(\\theta |
-\\omega) P(\\omega)
-](https://latex.codecogs.com/png.latex?%0AP%28Y%20%7C%20%5Ctheta%2C%20%5Comega%29%20P%28%5Ctheta%2C%20%5Comega%29%20%3D%20P%28Y%20%7C%20%5Ctheta%29%20P%28%5Ctheta%20%7C%20%5Comega%29%20P%28%5Comega%29%0A
-"
-P(Y | \\theta, \\omega) P(\\theta, \\omega) = P(Y | \\theta) P(\\theta | \\omega) P(\\omega)
-")  
 Thus, the overall posterior can be represented by the following:
 
-  
-![
-P(\\theta, \\omega|Y) = \\frac{P(Y | \\theta) P(\\theta | \\omega)
-P(\\omega)}{P(Y)}
-](https://latex.codecogs.com/png.latex?%0AP%28%5Ctheta%2C%20%5Comega%7CY%29%20%3D%20%5Cfrac%7BP%28Y%20%7C%20%5Ctheta%29%20P%28%5Ctheta%20%7C%20%5Comega%29%20P%28%5Comega%29%7D%7BP%28Y%29%7D%0A
-"
-P(\\theta, \\omega|Y) = \\frac{P(Y | \\theta) P(\\theta | \\omega) P(\\omega)}{P(Y)}
-")  
+<p align="center">
+  <img src="https://latex.codecogs.com/png.latex?%0AP%28%5Ctheta%2C%20%5Comega%7CY%29%20%3D%20%5Cfrac%7BP%28Y%20%7C%20%5Ctheta%29%20P%28%5Ctheta%20%7C%20%5Comega%29%20P%28%5Comega%29%7D%7BP%28Y%29%7D%0A"/> 
+</p>
+
 where in this case, omega serves as a kind of prior belief for the
 distribution of theta.
 
@@ -134,14 +114,9 @@ accurate thetas for the relevant positions since the intra-group
 properties are not “cross-contaminated” or diluted. This can be seen by
 the following formulation:
 
-  
-![
-P(\\theta, \\omega\_{pos}|Y) = \\frac{P(Y | \\theta) P(\\theta |
-\\omega\_{pos}) P(\\omega\_{pos})}{P(Y)}
-](https://latex.codecogs.com/png.latex?%0AP%28%5Ctheta%2C%20%5Comega_%7Bpos%7D%7CY%29%20%3D%20%5Cfrac%7BP%28Y%20%7C%20%5Ctheta%29%20P%28%5Ctheta%20%7C%20%5Comega_%7Bpos%7D%29%20P%28%5Comega_%7Bpos%7D%29%7D%7BP%28Y%29%7D%0A
-"
-P(\\theta, \\omega_{pos}|Y) = \\frac{P(Y | \\theta) P(\\theta | \\omega_{pos}) P(\\omega_{pos})}{P(Y)}
-")  
+<p align="center">
+  <img src="https://latex.codecogs.com/png.latex?%0AP%28%5Ctheta%2C%20%5Comega_%7Bpos%7D%7CY%29%20%3D%20%5Cfrac%7BP%28Y%20%7C%20%5Ctheta%29%20P%28%5Ctheta%20%7C%20%5Comega_%7Bpos%7D%29%20P%28%5Comega_%7Bpos%7D%29%7D%7BP%28Y%29%7D%0A"/> 
+</p>
 
 ## Choice of Distributions for BH Model
 
@@ -172,17 +147,9 @@ the following distributions:
 To create the model syntax for the distributions, we need to incorporate
 the distributions into the finalised posterior representation as shown:
 
-  
-![
-P(\\theta, \\omega\_{player}, \\kappa\_{player}, \\omega\_{pos},
-\\kappa\_{pos}|Y) = \\frac{P(Y | \\theta) P(\\theta | \\omega\_{player},
-\\kappa\_{player}) P(\\kappa\_{player}) P(\\omega\_{player} |
-\\omega\_{pos}, \\kappa\_{pos}) P(\\omega\_{pos})
-P(\\kappa\_{pos})}{P(Y)}
-](https://latex.codecogs.com/png.latex?%0AP%28%5Ctheta%2C%20%5Comega_%7Bplayer%7D%2C%20%5Ckappa_%7Bplayer%7D%2C%20%5Comega_%7Bpos%7D%2C%20%5Ckappa_%7Bpos%7D%7CY%29%20%3D%20%5Cfrac%7BP%28Y%20%7C%20%5Ctheta%29%20P%28%5Ctheta%20%7C%20%5Comega_%7Bplayer%7D%2C%20%5Ckappa_%7Bplayer%7D%29%20P%28%5Ckappa_%7Bplayer%7D%29%20P%28%5Comega_%7Bplayer%7D%20%7C%20%5Comega_%7Bpos%7D%2C%20%5Ckappa_%7Bpos%7D%29%20%20P%28%5Comega_%7Bpos%7D%29%20P%28%5Ckappa_%7Bpos%7D%29%7D%7BP%28Y%29%7D%0A
-"
-P(\\theta, \\omega_{player}, \\kappa_{player}, \\omega_{pos}, \\kappa_{pos}|Y) = \\frac{P(Y | \\theta) P(\\theta | \\omega_{player}, \\kappa_{player}) P(\\kappa_{player}) P(\\omega_{player} | \\omega_{pos}, \\kappa_{pos})  P(\\omega_{pos}) P(\\kappa_{pos})}{P(Y)}
-")  
+<p align="center">
+  <img src="https://latex.codecogs.com/png.latex?%0AP%28%5Ctheta%2C%20%5Comega_%7Bplayer%7D%2C%20%5Ckappa_%7Bplayer%7D%2C%20%5Comega_%7Bpos%7D%2C%20%5Ckappa_%7Bpos%7D%7CY%29%20%3D%20%5Cfrac%7BP%28Y%20%7C%20%5Ctheta%29%20P%28%5Ctheta%20%7C%20%5Comega_%7Bplayer%7D%2C%20%5Ckappa_%7Bplayer%7D%29%20P%28%5Ckappa_%7Bplayer%7D%29%20P%28%5Comega_%7Bplayer%7D%20%7C%20%5Comega_%7Bpos%7D%2C%20%5Ckappa_%7Bpos%7D%29%20%20P%28%5Comega_%7Bpos%7D%29%20P%28%5Ckappa_%7Bpos%7D%29%7D%7BP%28Y%29%7D%0A"/> 
+</p>
 
 Note that in the final posterior, we have included additional parameters
 to fully represent the hierarchical grouping.
@@ -196,7 +163,7 @@ following distributions:
 
   - Each player’s 3 point shooting trial is represented by a Bernoulli
     distribution parameterised by θ
-      - ![P(Y| \\theta)](https://latex.codecogs.com/png.latex?P%28Y%7C%5Ctheta%29
+      - ![P(Y|\\theta)](https://latex.codecogs.com/png.latex?P%28Y%7C%5Ctheta%29
         "P(Y| \\theta)")
       - The series of 3 point shootings by each player is a Binomial
         distribution parametrised by θ and number of attempts N. This is
