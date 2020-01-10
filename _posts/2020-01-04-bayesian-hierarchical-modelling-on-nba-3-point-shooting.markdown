@@ -160,7 +160,7 @@ following distributions:
   - Each player’s 3 point shooting trial is represented by a Bernoulli
     distribution parameterised by θ
       - ![P(Y|\\theta)](https://latex.codecogs.com/png.latex?P%28Y%7C%5Ctheta%29
-        "P(Y| \\theta)")
+        "P(Y|\\theta)")
       - The series of 3 point shootings by each player is a Binomial
         distribution parametrised by θ and number of attempts N. This is
         not formally shown in the diagram.
