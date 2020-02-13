@@ -4,7 +4,7 @@ title:  Altair Visualisation EDA of OkCupid Data
 date:   2019-11-24
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
 img: /post_3/gender_age_research.png # Add image post (optional)
-tags: [Data Science, EDA, Altair]
+tags: [EDA, Altair]
 author: Kenneth Foo # Add name author (optional)
 titleformat: dark
 tagformat: dark

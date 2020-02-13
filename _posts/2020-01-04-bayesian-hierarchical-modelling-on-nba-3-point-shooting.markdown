@@ -3,8 +3,8 @@ layout: post
 title:  Bayesian Hierarchical Modelling of NBA 3 Point Shooting
 date:   2020-01-04
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
-img: /post_4/BH_model_diagram.png # Add image post (optional)
-tags: [Data Science, Bayesian Hierarchical Modelling, JAGS, MCMC]
+img: /post_4/hierarchy_simplification.png # Add image post (optional)
+tags: [Bayesian Hierarchical Modelling, JAGS, MCMC, NBA]
 author: Kenneth Foo # Add name author (optional)
 titleformat: dark
 tagformat: dark
@@ -98,7 +98,18 @@ Thus, the overall posterior can be represented by the following:
 
 Different positions will have different skillsets but within each
 position, players tend to have similar skillsets. This gives us the
-premise for constructing the Bayesian Hierarchical model.
+premise for constructing the Bayesian Hierarchical model. For those who
+are not familiar to it, we incorporate player positions information in a
+hierarchical structure that provides a good basis for generating
+individual players’ skills. This is based on the generally sound
+assumption that players within different positions have more homogenous
+skills. And this hierarchy is anchored by an overall population
+distribution that represents the overall NBA league wide shooting
+capability for that particular season.
+
+<p align="center">
+  <img src="{{site.baseurl}}/assets/img/post_4/hierarchy_simplification.png"/> 
+</p>
 
 To help facilitate this train of thought, it is natural to think that
 PGs tend to have better 3 point shooting skills compared to Centers.
@@ -124,7 +135,7 @@ the following distributions:
       - Limits are 0 and 1
 
   - Binomial distribution
-      - Parametrised by θ and N
+      - Parameterised by θ and N
       - Limits are 0 and N
       - Series of N independent Bernoulli trials of the same θ.
   - Beta distribution
@@ -162,7 +173,7 @@ following distributions:
       - ![P(Y|\\theta)](https://latex.codecogs.com/png.latex?P%28Y%7C%5Ctheta%29
         "P(Y|\\theta)")
       - The series of 3 point shootings by each player is a Binomial
-        distribution parametrised by θ and number of attempts N. This is
+        distribution parameterised by θ and number of attempts N. This is
         not formally shown in the diagram.
   - Each player’s θ is generated from a Beta distribution as
     parameterised by the mode ω\_player and concentration κ\_player
@@ -364,7 +375,7 @@ Hierarchical modelling with NBA positional information for 3 point
 shooting percentages. We also went through some diagnosis of MCMC
 simulations, and how to verify that the simulations are reliable.
 Additionally, we went through some analysis of the shooting percentages
-for each position and for certain players. With hiearchical modelling
+for each position and for certain players. With hierarchical modelling
 came a key concept of “shrinkage”, which was also illustrated when we
 compare players within each position and how the positional information
 impacted their estimated shooting percentages.

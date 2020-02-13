@@ -1,4 +1,4 @@
-I"�L<p>With the data from the ESPN NBA website for the regular NBA season of
+I"�N<p>With the data from the ESPN NBA website for the regular NBA season of
 2018-2019, I will apply Bayesian Hierarchical modelling on the 3 point percentages across the different basketball positions.</p>
 
 <p>The ESPN dataset comprises of players stats with player position
@@ -87,7 +87,18 @@ The numerator can then be represented by the following:</p>
 
 <p>Different positions will have different skillsets but within each
 position, players tend to have similar skillsets. This gives us the
-premise for constructing the Bayesian Hierarchical model.</p>
+premise for constructing the Bayesian Hierarchical model. For those who
+are not familiar to it, we incorporate player positions information in a
+hierarchical structure that provides a good basis for generating
+individual players’ skills. This is based on the generally sound
+assumption that players within different positions have more homogenous
+skills. And this hierarchy is anchored by an overall population
+distribution that represents the overall NBA league wide shooting
+capability for that particular season.</p>
+
+<p align="center">
+  <img src="/assets/img/post_4/hierarchy_simplification.png" /> 
+</p>
 
 <p>To help facilitate this train of thought, it is natural to think that
 PGs tend to have better 3 point shooting skills compared to Centers.
@@ -117,7 +128,7 @@ the following distributions:</p>
   </li>
   <li>Binomial distribution
     <ul>
-      <li>Parametrised by θ and N</li>
+      <li>Parameterised by θ and N</li>
       <li>Limits are 0 and N</li>
       <li>Series of N independent Bernoulli trials of the same θ.</li>
     </ul>
@@ -177,7 +188,7 @@ distribution parameterised by θ
         </table>
       </li>
       <li>The series of 3 point shootings by each player is a Binomial
-distribution parametrised by θ and number of attempts N. This is
+distribution parameterised by θ and number of attempts N. This is
 not formally shown in the diagram.</li>
     </ul>
   </li>
@@ -396,7 +407,7 @@ Hierarchical modelling with NBA positional information for 3 point
 shooting percentages. We also went through some diagnosis of MCMC
 simulations, and how to verify that the simulations are reliable.
 Additionally, we went through some analysis of the shooting percentages
-for each position and for certain players. With hiearchical modelling
+for each position and for certain players. With hierarchical modelling
 came a key concept of “shrinkage”, which was also illustrated when we
 compare players within each position and how the positional information
 impacted their estimated shooting percentages.</p>

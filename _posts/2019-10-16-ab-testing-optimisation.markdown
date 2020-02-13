@@ -4,7 +4,7 @@ title:  AB Testing Optimisation with a Toy Dataset
 date:   2019-10-16 
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
 img: /post_2/thom_pdf.png # Add image post (optional)
-tags: [Data Science, AB Testing, Explore vs Exploit, MAB]
+tags: [AB Testing, Explore vs Exploit, MAB]
 author: Kenneth Foo # Add name author (optional)
 titleformat: dark
 tagformat: dark
