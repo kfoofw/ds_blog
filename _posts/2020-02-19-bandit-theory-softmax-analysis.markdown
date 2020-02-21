@@ -3,7 +3,7 @@ layout: post
 title:  MAB Analysis of Softmax Algorithm
 date:   2020-02-19
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
-img: /post_7/softmax_eqn.png # Add image post (optional)
+img: /post_7/rate-best-arm_5-arms_0dot1-0dot9_soft.png # Add image post (optional)
 tags: [Online Learning, Bandit Algorithms, Altair, Softmax]
 author: Kenneth Foo # Add name author (optional)
 titleformat: dark

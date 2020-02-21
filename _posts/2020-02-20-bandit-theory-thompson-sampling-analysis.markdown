@@ -3,7 +3,7 @@ layout: post
 title:  MAB Analysis of Thompson Sampling Algorithm
 date:   2020-02-20
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
-img: /post_5/rate-best-arm_5-arms_0dot1-0dot9.png # Add image post (optional)
+img: /post_9/rate-best-arm_5-arms_0dot1-0dot9_ts.png # Add image post (optional)
 tags: [Online Learning, Bandit Algorithms, Altair, Thompson Sampling]
 author: Kenneth Foo # Add name author (optional)
 titleformat: dark
