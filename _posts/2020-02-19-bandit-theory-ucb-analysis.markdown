@@ -193,7 +193,7 @@ The previous analysis was a simulation exercise on arms with big differences in 
 In the following case, we simulate 5 arms, 4 of which have a mean of 0.8 while the last/best has a mean of 0.9.
 
 <p align="center">
-<img src="../img/rate-best-arm_5-arms_0dot8-0dot9_ucb.png" />
+  <img src="{{site.baseurl}}/assets/img/post_8/rate-best-arm_5-arms_0dot8-0dot9_ucb.png"/> 
 </p>
 
 Based on a reduced difference between the reward returns of all arms, we observe a big deterioration in the performance of the UCB algorithm. The rate of choosing the best arm now approaches 0.32, which is similar to what we saw in the Softmax algorithm.
