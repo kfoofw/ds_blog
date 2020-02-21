@@ -4,14 +4,14 @@ title:  MAB Analysis of UCB Algorithm
 date:   2020-02-19
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
 img: /post_5/rate-best-arm_5-arms_0dot1-0dot9.png # Add image post (optional)
-tags: [Bandit Algorithms, Altair, UCB]
+tags: [Online Learning, Bandit Algorithms, Altair, UCB]
 author: Kenneth Foo # Add name author (optional)
 titleformat: dark
 tagformat: dark
 ---
 The Upper Confidence Bound (UCB) algorithm is often phrased as "optimism in the face of uncertainty". To understand why, consider at a given round that each arm's reward function can be perceived as a point estimate based on the average rate of reward as observed. Drawing intuition from confidence intervals, for each point estimate, we can also incorporate some form of uncertainty boundary around the point estimate. In that sense, we have both lower boundary and upper boundary for each arm. 
 
-The UCB algorithm is aptly named because we are only concerned with the upper bound.
+The UCB algorithm is aptly named because we are only concerned with the upper bound, given that we are trying to find the arm with the highest reward rate.
 
 There are different variants of the UCB algorithms but in this article, we will take a look at the UCB1 algorithm. At each given round of `n` trials, the reward UCB of all arms are represented by the following:
 
@@ -33,7 +33,7 @@ The time complexity between the numerator and denominator provides a tension bet
 
 The following analysis is based on the book ["Bandit Algorithms for Website Optimization"](https://www.oreilly.com/library/view/bandit-algorithms-for/9781449341565/) by John Myles White. For further understanding of the code, I have included comments for easier understanding.
 
-Below is the code for creation of the SoftMax algorithm setup and progressive updates of counts and values for arms.
+Below is the code for creation of the UCB1 algorithm setup and progressive updates of counts and values for arms.
 - Counts: Represent recorded times when arm was pulled.
 - Values: Represent the known mean reward. In the case of a Bernoulli arm, values represent the probability of reward which ranges from 0 to 1.
 
@@ -91,7 +91,7 @@ class BernoulliArm():
         else:
             return 1.0
 ```
-To proceed with any further analysis, an operational script is required to process the simulation. The following code helps to create a simulation for a specific run of epsilon value.
+To proceed with any further analysis, an operational script is required to process the simulation where:
 - num_sims: Represents the number of independent simulations, each of length equal to 'horizon'.
 - horizon: Represents the number of time steps/trials per round of simulation
 
@@ -184,7 +184,7 @@ As the trial progresses, the UCB components becomes much smaller for all arms, a
 
 The cumulative reward plot of the UCB algorithm is comparable to the other algorithms. Although it does not do as well as the best of Softmax (`tau` = 0.1 or 0.2) where the cumulative reward was beyond 200, the UCB cumulative reward range is close to that range (around 190).
 
-We also observe some form of curvature in the early phases of the trial, which can be corroborated by the extreme fluctuations we saw in the rate of choosing best arms. Liekwise, when the experiment progresses, the algorithm can distinguish the best arm, and picks it with higher frequency, and the cumulative reward plot has a straight line gradient (which should approximate a value of 0.9 based on consistently choosing the best arm).
+We also observe some form of curvature in the early phases of the trial, which can be corroborated by the extreme fluctuations we saw in the rate of choosing best arms. Likewise, when the experiment progresses, the algorithm can distinguish the best arm, and picks it with higher frequency, and the cumulative reward plot has a straight line gradient (which should approximate a value of 0.9 based on consistently choosing the best arm).
 
 ## Simulation of Arms with relatively smaller differences in Means
 
@@ -208,7 +208,17 @@ It should be noted that in this scenario, for Epsilon Greedy algorithm, the rate
 
 Since the arms are close in average returns, the eventual UCB cumulative reward obtains a value of around 210. Compare this to choosing the best arm which will return 0.9 * 250 = 225, we see a regret of 15. It might seem small in this case, but as a percentage, it can be considered as significant (6.67%) depending on the application focus.
 
+Taking a look at the overall cumulative regret may provide a better perspective of the performance, especially with respect to the other algorithms.
+
+<p align="center">
+  <img src="{{site.baseurl}}/assets/img/post_8/cum-regret_5-arms_0dot8-0dot9_ucb.png"/> 
+</p>
+
+Based on the cumulative regret plots, we see that UCB1 has a cumulative regret of 18, which is similar to the Softmax algorithm. It is also worst off compared to the Epsilon Greedy algorithm which had a range of 12.3 to 14.8. The cumulative regret line is also relatively straight, which means that the algorithm will continue to accumulate more regret with a longer time horizon.
+
 ## Summary
 In this analysis of UCB algorithm, we broke down the formulation of the algorithm and also performed simulation experiments for different arms to illustrate its robustness (or lack thereof).
 
-Similar to the Softmax algorithm, a learning takeaway is that for arms with closer means, the UCB algorithm does not seem to be as robust in terms of determining the best arm, for which Epsilon Greedy is more suitable.
+Similar to the Softmax algorithm, a learning takeaway is that for arms with closer means, the UCB algorithm does not seem to be as robust in terms of determining the best arm, for which Epsilon Greedy is more suitable. 
+
+For reference on this project on bandit simulations analysis, please refer to this [Github repo](https://github.com/kfoofw/bandit_simulations). For quick reference on the actual code, please refer to this [Jupyter notebook](https://github.com/kfoofw/bandit_simulations/blob/master/python/notebooks/analysis.ipynb)

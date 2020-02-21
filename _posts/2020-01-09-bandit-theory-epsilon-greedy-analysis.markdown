@@ -4,12 +4,11 @@ title:  MAB Analysis of Epsilon Greedy Algorithm
 date:   2020-01-09
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
 img: /post_5/rate-best-arm_5-arms_0dot1-0dot9.png # Add image post (optional)
-tags: [Bandit Algorithms, Altair, Epsilon Greedy]
+tags: [Online Learning, Bandit Algorithms, Altair, Epsilon Greedy]
 author: Kenneth Foo # Add name author (optional)
 titleformat: dark
 tagformat: dark
 ---
-
 The Epsilon Greedy algorithm is one of the key algorithms behind decision sciences, and embodies the balance of exploration versus exploitation. The dilemma between exploration versus exploitation can be defined simply based on:
 - Exploitation: Based on what you know of the circumstances, choose the option/action that has the best average return.
 - Exploration: Recognise that what you know of the different options may be limited, and choose to engage in options that may potentially reveal themselves to be of high return
@@ -191,6 +190,14 @@ Once again, we also observe that epsilon value of 0.1 takes much longer to disco
 
 Additionally, the cumulative rewards for all epsilon values are much closer in nature so much so that they are indistinguishable. This is probably due to the fact that the reward means of all arms are quite close, and also the fact that within the time horizon, the algorithms have not discovered the best arm yet.
 
+Taking a look at the overall cumulative regret may provide a better perspective of the performance.
+
+<p align="center">
+  <img src="{{site.baseurl}}/assets/img/post_5/cum-regret_5-arms_0dot8-0dot9_epsg.png"/> 
+</p>
+
+As shown, `epsilon` value of 0.2 is the best which is followed closely by `epsilon` value of 0.3. The overall cumulative regret ranges between 12.3 to 14.8. There is also some form of tapering off which shows a reduction in progressive regret accumlation.  
+
 ## Limitations of Analysis
 The analysis is heavily based on a simulation based experiment where the rewards distributions are assumed to be stationary. In practical real world applications, the reward distributions may shift with time, and the algorithm has to continuously ensure that there is sufficient exploration to rediscover the best arm/action to take. 
 
@@ -200,3 +207,5 @@ Another limitation is that in the real world, the reward information may be dela
 In this analysis, we have taken a look at the Epsilon Greedy algorithm, and explained the impact of epsilon on the asymptotic reward limit, as well as rate of convergence to the best arm discovery. It should also be noted that the relatively difference in means is a crucial aspect of discovering the best arm. 
 
 One aspect that we did not cover was the parameter of number of arms. It should come naturally to think that with more arms, the algorithm has more options to explore and this will delay the rate of discovery of the best arm, and also causes the algorithm to take a longer time to reach the asymptote.
+
+For reference on this project on bandit simulations analysis, please refer to this [Github repo](https://github.com/kfoofw/bandit_simulations). For quick reference on the actual code, please refer to this [Jupyter notebook](https://github.com/kfoofw/bandit_simulations/blob/master/python/notebooks/analysis.ipynb)
