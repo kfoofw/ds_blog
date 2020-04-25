@@ -1,0 +1,2 @@
+I"�<p>The Upper Confidence Bound (UCB) algorithm is often phrased as “optimism in the face of uncertainty”. To understand why, consider at a given round that each arm’s reward function can be perceived as a point estimate based on the average rate of reward as observed. Drawing intuition from confidence intervals, for each point estimate, we can also incorporate some form of uncertainty boundary around the point estimate. In that sense, we have both lower boundary and upper boundary for each arm.</p>
+:ET

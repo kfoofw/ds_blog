@@ -1,6 +1,6 @@
-I"1<p>The Epsilon Greedy algorithm is one of the key algorithms behind decision sciences, and embodies the balance of exploration versus exploitation. The dilemma between exploration versus exploitation can be defined simply based on:</p>
+I"|4<p>The Epsilon Greedy algorithm is one of the key algorithms behind decision sciences, and embodies the balance of exploration versus exploitation. The dilemma between exploration versus exploitation can be defined simply based on:</p>
 <ul>
-  <li>Eploitation: Based on what you know of the circumstances, choose the option/action that has the best average return.</li>
+  <li>Exploitation: Based on what you know of the circumstances, choose the option/action that has the best average return.</li>
   <li>Exploration: Recognise that what you know of the different options may be limited, and choose to engage in options that may potentially reveal themselves to be of high return</li>
 </ul>
 
@@ -14,42 +14,42 @@
   <li>Values: Represent the known mean reward. In the case of a Bernoulli arm, values represent the probability of reward which ranges from 0 to 1.</li>
 </ul>
 
-<p>```class EpsilonGreedy():
-    def <strong>init</strong>(self, epsilon, counts, values):
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class EpsilonGreedy():
+    def __init__(self, epsilon, counts, values):
         self.epsilon = epsilon
         self.counts = counts # Count represent counts of pulls for each arm. For multiple arms, this will be a list of counts.
         self.values = values # Value represent average reward for specific arm. For multiple arms, this will be a list of values.
-        return</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Initialise k number of arms
-def initialize(self, n_arms):
-    self.counts = [0 for col in range(n_arms)]
-    self.values = [0.0 for col in range(n_arms)]
-    return
-
-# Epsilon greedy arm selection
-def select_arm(self):
-    # If prob is not in epsilon, do exploitation of best arm so far
-    if random.random() &gt; self.epsilon:
-        return np.argmax(self.values)
-    # If prob falls in epsilon range, do exploration
-    else:
-        return random.randrange(len(self.values))
-
-# Choose to update chosen arm and reward
-def update(self, chosen_arm, reward):
-    # update counts pulled for chosen arm
-    self.counts[chosen_arm] = self.counts[chosen_arm] + 1
-    n = self.counts[chosen_arm]
+        return 
     
-    # Update average/mean value/reward for chosen arm
-    value = self.values[chosen_arm]
-    new_value = ((n-1)/float(n)) * value + (1 / float(n)) * reward
-    self.values[chosen_arm] = new_value
-    return ```
+    # Initialise k number of arms
+    def initialize(self, n_arms):
+        self.counts = [0 for col in range(n_arms)]
+        self.values = [0.0 for col in range(n_arms)]
+        return
+    
+    # Epsilon greedy arm selection
+    def select_arm(self):
+        # If prob is not in epsilon, do exploitation of best arm so far
+        if random.random() &gt; self.epsilon:
+            return np.argmax(self.values)
+        # If prob falls in epsilon range, do exploration
+        else:
+            return random.randrange(len(self.values))
+    
+    # Choose to update chosen arm and reward
+    def update(self, chosen_arm, reward):
+        # update counts pulled for chosen arm
+        self.counts[chosen_arm] = self.counts[chosen_arm] + 1
+        n = self.counts[chosen_arm]
+        
+        # Update average/mean value/reward for chosen arm
+        value = self.values[chosen_arm]
+        new_value = ((n-1)/float(n)) * value + (1 / float(n)) * reward
+        self.values[chosen_arm] = new_value
+        return
 </code></pre></div></div>
 
-<p>With the algorithm setup for Espsilon Greedy, we need to discuss the distribution of the arm/action. Think of each arm/action as a coin flip. The outcome of a coin flip is of a dichotomous nature, either Heads or Tails. Thus, we can implement a Bernoulli distribution for each arm. This essentially becomes our Reward information distribution system for each arm.</p>
+<p>With the algorithm setup for Epsilon Greedy, we need to discuss the distribution of the arm/action. Think of each arm/action as a coin flip. The outcome of a coin flip is of a dichotomous nature, either Heads or Tails. Thus, we can implement a Bernoulli distribution for each arm. This essentially becomes our Reward information distribution system for each arm.</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class BernoulliArm():
     def __init__(self, p):
@@ -60,8 +60,7 @@ def update(self, chosen_arm, reward):
         if random.random() &gt; self.p:
             return 0.0
         else:
-            return 1.0
-        
+            return 1.0     
 </code></pre></div></div>
 <p>To proceed with any further analysis, an operational script is required to process the simulation. The following code helps to create a simulation for a specific run of epsilon value.</p>
 <ul>
@@ -128,7 +127,7 @@ random.shuffle(means)
 arms = list(map(lambda mu: BernoulliArm(mu), means))
 print("Best arm is " + str(np.argmax(means)))
 
-f = open("standard_results.tsv", "w+")
+f = open("standard_results_epsg.tsv", "w+")
 
 # Create simulations for each exploration epsilon value
 for epsilon in [0.1, 0.2, 0.3, 0.4, 0.5]:
@@ -145,7 +144,7 @@ f.close()
 <p>Using some data-preprocessing and basic Altair visualisation, we can plot the probability of pulling the best arm for each epsilon value.</p>
 
 <p align="center">
-  <img src="/assets/img/post_5/rate-best-arm_5-arms_0dot1-0dot9.png" /> 
+  <img src="/assets/img/post_5/rate-best-arm_5-arms_0dot1-0dot9_epsg.png" /> 
 </p>
 
 <p>Note that the epsilon greedy algorithm has asymptotic performance due to its inherent nature of exploration. We can observe that the higher the value of epsilon, the lower its asymptotic performance. For example, for 0.5 epsilon, the asymptotic value is actually 60%. This is broken down to 50% for pure exploitation, and an added 10% due to the random exploration (1/5 chance for the remaining 50% for exploration). Likewise, for 0.1 epsilon, the asymptote is around 92%. This is brokwn down to 90% for pure exploitation, and an added 2% due to random exploration (1/5 chance for remaining 10% for exploration).</p>
@@ -153,7 +152,7 @@ f.close()
 <p>Another thing worth noting is the rate of convergence. The higher the rate of exploration, the earlier the algorithm discovers the best arm. This is shown by how rapid the line plots increases (until it hits its asymptote). It is interesting to note that the rate of best-arm-discovery is not linear, as shown by how epsilon 0.1 seems to be exponentially slower compared to the others.</p>
 
 <p align="center">
-  <img src="/assets/img/post_5/cum-reward_5-arms_0dot1-0dot9.png" /> 
+  <img src="/assets/img/post_5/cum-reward_5-arms_0dot1-0dot9_epsg.png" /> 
 </p>
 
 <p>Taking another look at the cumulative reward system, within the given time horizon of 250 steps, neither 0.1 nor 0.5 epsilon values are the best performers. The best performer is instead 0.2, which has a combination of fast convergence to best arm exploitation and high asymptote.</p>
@@ -173,7 +172,7 @@ f.close()
 <p>In the following case, we simulate 5 arms, 4 of which have a mean of 0.8 while the last/best has a mean of 0.9.</p>
 
 <p align="center">
-  <img src="/assets/img/post_5/rate-best-arm_5-arms_0dot8-0dot9.png" /> 
+  <img src="/assets/img/post_5/rate-best-arm_5-arms_0dot8-0dot9_epsg.png" /> 
 </p>
 
 <p>Due to the relatively closer difference in reward means, the algorithm now takes much longer to approach the asymptotic limit. With the given time horizon of 250 steps, it simply was insufficient for the algorithm to discover the best arm as compared to the experiment done in the previous section.</p>
@@ -181,10 +180,18 @@ f.close()
 <p>Once again, we also observe that epsilon value of 0.1 takes much longer to discover the best arm compared to the others.</p>
 
 <p align="center">
-  <img src="/assets/img/post_5/cum-reward_5-arms_0dot8-0dot9.png" /> 
+  <img src="/assets/img/post_5/cum-reward_5-arms_0dot8-0dot9_epsg.png" /> 
 </p>
 
 <p>Additionally, the cumulative rewards for all epsilon values are much closer in nature so much so that they are indistinguishable. This is probably due to the fact that the reward means of all arms are quite close, and also the fact that within the time horizon, the algorithms have not discovered the best arm yet.</p>
+
+<p>Taking a look at the overall cumulative regret may provide a better perspective of the performance.</p>
+
+<p align="center">
+  <img src="/assets/img/post_5/cum-regret_5-arms_0dot8-0dot9_epsg.png" /> 
+</p>
+
+<p>As shown, <code class="highlighter-rouge">epsilon</code> value of 0.2 is the best which is followed closely by <code class="highlighter-rouge">epsilon</code> value of 0.3. The overall cumulative regret ranges between 12.3 to 14.8. There is also some form of tapering off which shows a reduction in progressive regret accumlation.</p>
 
 <h2 id="limitations-of-analysis">Limitations of Analysis</h2>
 <p>The analysis is heavily based on a simulation based experiment where the rewards distributions are assumed to be stationary. In practical real world applications, the reward distributions may shift with time, and the algorithm has to continuously ensure that there is sufficient exploration to rediscover the best arm/action to take.</p>
@@ -196,5 +203,5 @@ f.close()
 
 <p>One aspect that we did not cover was the parameter of number of arms. It should come naturally to think that with more arms, the algorithm has more options to explore and this will delay the rate of discovery of the best arm, and also causes the algorithm to take a longer time to reach the asymptote.</p>
 
-<p>The scripts for the analysis can be found in this <a href="https://github.com/kfoofw/bandits_simulations">Github repo</a>.</p>
+<p>For reference on this project on bandit simulations analysis, please refer to this <a href="https://github.com/kfoofw/bandit_simulations">Github repo</a>. For quick reference on the actual code, please refer to this <a href="https://github.com/kfoofw/bandit_simulations/blob/master/python/notebooks/analysis.ipynb">Jupyter notebook</a></p>
 :ET
