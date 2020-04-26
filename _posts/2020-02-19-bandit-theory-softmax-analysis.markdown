@@ -34,7 +34,7 @@ The `tau` parameter is a hyperparameter that ultimately determines how much rand
 
 It is important to note that the structured exploration of the Softmax algorithm combines aspects of exploitation and exploration. Instead of segmenting the trials into exploration and exploitation phases, the Softmax incorporates exploitation by using it to increase the chance of picking the higher return arm, while also yet making it also possible to pick the lower return arm (which is some form of exploration).
 
-The following analysis is based on the book ["Bandit Algorithms for Website Optimization"](https://www.oreilly.com/library/view/bandit-algorithms-for/9781449341565/) by John Myles White. For further understanding of the code, I have included comments for easier understanding.
+The following analysis is based on the book ["Bandit Algorithms for Website Optimization"](https://www.oreilly.com/library/view/bandit-algorithms-for/9781449341565/) by John Myles White. For further understanding of the code, I have included comments.
 
 Below is the code for creation of the SoftMax algorithm setup and progressive updates of counts and values for arms.
 - Counts: Represent recorded times when arm was pulled.

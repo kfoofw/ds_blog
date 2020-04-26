@@ -51,7 +51,7 @@ After selection of the best arm, we will play it and update the playthrough hist
 
 For the purposes of this exercise, we will use a uniform prior distribution as represented by Beta(a = 1, b = 1).
 
-The following analysis is based on the book ["Bandit Algorithms for Website Optimization"](https://www.oreilly.com/library/view/bandit-algorithms-for/9781449341565/) by John Myles White. Although Thompson Sampling was not covered in the book, I created the code for Thompson Sampling using his template for easier reference with respect to the past algorithm articles. For further understanding of the code, I have included comments for easier understanding.
+The following analysis is based on the book ["Bandit Algorithms for Website Optimization"](https://www.oreilly.com/library/view/bandit-algorithms-for/9781449341565/) by John Myles White. Although Thompson Sampling was not covered in the book, I created the code for Thompson Sampling using his template for easier reference with respect to the past algorithm articles. For further understanding of the code, I have included comments.
 
 Below is the code for creation of the Thompson Sampling algorithm setup and progressive updates of counts and values for arms.
 - Counts: Represent recorded times when arm was pulled.

@@ -15,7 +15,7 @@ The Epsilon Greedy algorithm is one of the key algorithms behind decision scienc
 
 By convention, "epsilon" represents the percentage of time/trials dedicated for exploration, and it is also typical to do random exploration. This introduces some form of stochasticity.
 
-The following analysis is based on the book ["Bandit Algorithms for Website Optimization"](https://www.oreilly.com/library/view/bandit-algorithms-for/9781449341565/) by John Myles White. For further understanding of the code, I have included comments for easier understanding.
+The following analysis is based on the book ["Bandit Algorithms for Website Optimization"](https://www.oreilly.com/library/view/bandit-algorithms-for/9781449341565/) by John Myles White. For further understanding of the code, I have included comments.
 
 Below is the code for creation of the Epsilon Greedy algorithm setup and progressive updates of counts and values for arms.
 - Counts: Represent recorded times when arm was pulled.

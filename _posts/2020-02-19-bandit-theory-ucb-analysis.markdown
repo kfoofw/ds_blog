@@ -31,7 +31,7 @@ Beyond the formulation explanation, here is a simple thought experiment to glean
 
 The time complexity between the numerator and denominator provides a tension between exploration and exploitation. For any increase in `n`, the UCB increases only by logarithmic time, while for any increase in `n_i`, the UCB decreases by `n_i`. Thus, an arm that has not been explored as often as other arms will have a bigger UCB component. Depending on its current average mean, the overall UCB function representation of that specific arm may be greater than other arms with higher return but smaller components, and consequently enable that arm to be picked.
 
-The following analysis is based on the book ["Bandit Algorithms for Website Optimization"](https://www.oreilly.com/library/view/bandit-algorithms-for/9781449341565/) by John Myles White. For further understanding of the code, I have included comments for easier understanding.
+The following analysis is based on the book ["Bandit Algorithms for Website Optimization"](https://www.oreilly.com/library/view/bandit-algorithms-for/9781449341565/) by John Myles White. For further understanding of the code, I have included comments.
 
 Below is the code for creation of the UCB1 algorithm setup and progressive updates of counts and values for arms.
 - Counts: Represent recorded times when arm was pulled.

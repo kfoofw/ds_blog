@@ -128,18 +128,12 @@ In terms of modelling choices, I explored 4 models that were a combination of 2 
 
         Aside from the 52-week seasonality, I also considered the notion of Quasi-Monthly effects. In this case, I assumed that a month comprises of 4 weeks, which gives us approximately 13 months.
 
-The below table summarises the 4 models explored in this article.
+Below is a short summary of the 4 models explored in this article:
 
-<center>
-
-| Model   |Trend Drift Component| Seasonal Component |
-|----------|:-------------:|:------:|
-| 1 |  Local Linear |  52-week only  |
-| 2 |  Local Linear |   52-week & Quasi-Monthly  |
-| 3 | Semi Local Linear |  52-week only  |
-| 4 | Semi Local Linear | 52-week & Quasi-Monthly |
-
-</center>
+- Model 1: Local linear trend, 52-week seasonal trend
+- Model 2: Local linear trend, 52-week and Quasi-Monthly trend
+- Model 3: Semi local linear trend, 52-week seasonal trend
+- Model 4: Semi local linear trend, 52-week and Quasi-Monthly trend
 
 ## BSTS Models with Code
 
