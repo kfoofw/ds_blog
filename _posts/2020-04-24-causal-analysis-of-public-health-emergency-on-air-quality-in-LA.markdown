@@ -4,7 +4,7 @@ title:  Causal Impact Analysis of a Public Health Emergency on PM 2.5 Air in LA 
 date:   2020-04-24
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
 img: /post_10/causal_impact.png # Add image post (optional)
-tags: [Time Series Analysis, Bayesian Structured Time Series, Causal Analysis]
+tags: [Time Series Analysis, Bayesian Structural Time Series, Causal Analysis]
 author: Kenneth Foo # Add name author (optional)
 titleformat: dark
 tagformat: dark
@@ -67,11 +67,11 @@ Taking that into account, the aggregation by calendar week basis produced a plot
 
 In this analysis, the impact of the declared public health emergency is perceived as an intervention. With the intention to slow the spread of the virus, the government mandated several measures such as social distancing, travel bans, closure of non-essential services. This drastically reduced economic activity, which can be seen as a form. Not only are the measures a sudden change, they are implemented for a prolonged period, which makes the quarantine initiative an interesting candidate for a causal analysis.
 
-Based on the data, we do see a sharp reduction in terms of the weekly PM2.5 data. However, we can't conclude that the reduction is statistically significant. This brings us to the next step of time series analysis using structured time series analysis.
+Based on the data, we do see a sharp reduction in terms of the weekly PM2.5 data. However, we can't conclude that the reduction is statistically significant. This brings us to the next step of time series analysis using structural time series analysis.
 
-## Structured Time Series Modelling
+## Structural Time Series Modelling
 
-Using both `CausalImpact` and `bsts` packages, we can utilise the models of structured time series to create a counterfactual baseline as a projection of what would have happened if the intervention event did not occur.
+Using both `CausalImpact` and `bsts` packages, we can utilise the models of structural time series to create a counterfactual baseline as a projection of what would have happened if the intervention event did not occur.
 
 We can first model the time series of the PM2.5 data using the structure time series. The model assumes the following state components: 
 - Observed states y
@@ -246,7 +246,7 @@ plot(model4, "components")
     <img src="{{site.baseurl}}/assets/img/post_10/model4_comp.png">
 </div>
 
-The plots provide the MCMC sampling of the structured time series given the observed data. The extent of shading reflects the posterior probability of the time series path under multiple simulations.
+The plots provide the MCMC sampling of the structural time series given the observed data. The extent of shading reflects the posterior probability of the time series path under multiple simulations.
 
 Based on the models, we see that the local linear trend was much smoother compared to the semi local linear trend. This could be due to the fact that the drift component in the semi local linear trend comprised of more variables (D, ρ) that allowed for more extreme stochasticity. This allowed for the semi-local linear trend models to capture certain high spike points such as in Jan 2018 that were not captured by the trends in the local linear trend models. 
 
@@ -372,8 +372,8 @@ Another limitation is that the model can be further improved if we have exogenou
 
 ## Summary
 
-This article has been an interesting side-project for me to learn how to apply causal analysis in terms of time series. It was very interesting to learn more about how to use the combination of structured time series and causal analysis effectively. 
+This article has been an interesting side-project for me to learn how to apply causal analysis in terms of time series. It was very interesting to learn more about how to use the combination of structural time series and causal analysis effectively. 
 
 Using that causal analysis framework and some postulation on the causal mechanism, I was able to show that the impact of a public health emergency due to Covid-19 in Los Angeles caused a reduction in PM 2.5 air, thereby improving the air quality (with some assumptions that there are no other confounders).
 
-For a reference on the code, you can find it in this [project Github](https://github.com/kfoofw/bayesian_structured_time_series). More specifically, the R code can be found in [this R script](https://github.com/kfoofw/bayesian_structured_time_series/blob/master/scripts/airquality_losangeles.R).
+For a reference on the code, you can find it in this [project Github](https://github.com/kfoofw/bayesian_structural_time_series). More specifically, the R code can be found in [this R script](https://github.com/kfoofw/bayesian_structural_time_series/blob/master/scripts/airquality_losangeles.R).
