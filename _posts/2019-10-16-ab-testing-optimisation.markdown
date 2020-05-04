@@ -16,7 +16,7 @@ As a recap, "explore versus exploit" is part of a decision-making framework unde
 Today's topic will cover a possible research scenario for a mobile company looking at optimising their AB testing methodology. 
 
 __Data:__  
-The dataset "cookie-cats.csv" was obtained from a Kaggle Public Dataset upload (https://www.kaggle.com/yufengsui/mobile-games-ab-testing/). It originated from a project task under Datacamp (https://www.datacamp.com/projects/184) as part of a typical AB testing project. However, my goal is different as I wish to optimise the AB testing methodology using algorithms.
+The dataset "cookie-cats.csv" was obtained from [a Kaggle Public Dataset upload](https://www.kaggle.com/yufengsui/mobile-games-ab-testing/). It originated from a project task under [Datacamp](https://www.datacamp.com/projects/184) as part of a typical AB testing project. However, my goal is different as I wish to optimise the AB testing methodology using algorithms.
 
 __Background/Description of dataset:__
 - User data was captured from a game called Cookie Cats, which has a typical progression in which users solves the puzzle on each stage to progress. 
