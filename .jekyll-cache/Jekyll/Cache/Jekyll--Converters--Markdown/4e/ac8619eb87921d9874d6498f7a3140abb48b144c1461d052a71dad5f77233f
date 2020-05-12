@@ -1,4 +1,4 @@
-I">1<h1 id="explore-vs-exploit-dilemma-in-multi-armed-bandits"><ins>Explore vs Exploit Dilemma in Multi-Armed Bandits</ins></h1>
+I"J1<h1 id="explore-vs-exploit-dilemma-in-multi-armed-bandits"><ins>Explore vs Exploit Dilemma in Multi-Armed Bandits</ins></h1>
 
 <p>What is the “Explore versus Exploit” dilemma about? What does it have to do with “Multi Armed Bandits”? Although these terms sound unappealingly technical, it is actually an intuitive framework to understand decision making. Let’s start by asking ourselves: Where should you have your next meal at?</p>
 
@@ -98,7 +98,7 @@
 
 <p>There are several algorithms available for MABs optimisation but I will briefly describe just two of them:</p>
 
-<h4 id="1--selection">1.  Selection</h4>
+<h4 id="1-random-selection">1. Random Selection</h4>
 <p>Random selection involves randomly choosing bandits for interaction. There is no consideration of past performance, which intuitively means that doing so will not optimally help attain the maximum cumulative gains, and there is no guarantee that we will converge onto the best performer in the long run.</p>
 
 <h4 id="2-epsilon-greedy">2. Epsilon Greedy</h4>

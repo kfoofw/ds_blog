@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  CB Analysis of Linear Upper Confidence Bound Disjoint (LinUCB Disjoint) Algorithm
+title:  Contextual Bandits Analysis of LinUCB Disjoint Algorithm with Dataset
 date:   2020-05-03
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
 img: /post_11/caltech_linucb_lect.png # Add image post (optional)

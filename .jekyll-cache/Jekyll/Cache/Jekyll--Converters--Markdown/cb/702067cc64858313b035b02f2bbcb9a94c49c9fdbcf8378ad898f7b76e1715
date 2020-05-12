@@ -1,0 +1,2 @@
+I"<p>In my previous <a href="https://kfoofw.github.io/contextual-bandits-linear-ucb-disjoint/">post</a>, I explained the background behind contextual bandits (CB) as a variant of the multi-armed bandit (MAB) problems that utilises contextual information. With a summary introduction to the upper confidence bound (UCB) algorithm in MAB applications,  I extended the use of that concept in contextual bandits by diving into a detailed implementation of the linear upper confidence bound disjoint (LinUCB Disjoint) contextual bandits.</p>
+:ET

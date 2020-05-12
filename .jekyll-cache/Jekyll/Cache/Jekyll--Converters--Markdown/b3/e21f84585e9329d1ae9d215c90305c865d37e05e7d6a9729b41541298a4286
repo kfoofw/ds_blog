@@ -1,4 +1,4 @@
-I"M[<p>Contextual bandits (CB) are more granular in terms of the way they use information. Compared to their Multi-armed Bandits (MAB), we utilise contextual information about the observed instance in order to recommend the most effective variant.</p>
+I"�Z<p>Contextual bandits (CB) are more granular in terms of the way they use information. Compared to their Multi-armed Bandits (MAB) counterparts, we utilise contextual information about the observed instance in order to recommend the most effective variant.</p>
 
 <p>Let’s use an example of A/B testing. Assume a website has 3 webpage variants (A, B, C), and the objective is to optimise the click through rate (CTR):</p>
 <ul>
@@ -42,7 +42,7 @@
 
 <p>In the paper <a href="https://arxiv.org/abs/1003.0146">“A Contextual-Bandit Approach to Personalized News Article Recommendation”</a>, Li et al. demonstrated the use of a contextual multi-armed bandit solution where the expected pay off <code class="highlighter-rouge">r_{t,a}</code> of an arm <code class="highlighter-rouge">a</code> is linear in its context covariates <code class="highlighter-rouge">x_{t,a}</code> at  time <code class="highlighter-rouge">t</code>. This is called Linear UCB Disjoint (LinUCB).</p>
 
-<p>A simple example of this is demonstrated by his lecture slides by Assoc Prof Yue Yisong, which can be found <a href="http://www.yisongyue.com/courses/cs159/lectures/LinUCB.pdf">here</a>. In the example of a news article recommendation, there are two user groups with their corresponding context (young and old demographics) as shown by the relevant <code class="highlighter-rouge">x_1</code> (young) or <code class="highlighter-rouge">x_2</code> (old) feature vector. Based on the learnt weights <code class="highlighter-rouge">theta</code>, we can perform matrix multiplication to predict the pay off for the recommended article.</p>
+<p>A simple example of this is demonstrated in his lecture slides by Caltech Assoc Prof Yue Yisong, which can be found <a href="http://www.yisongyue.com/courses/cs159/lectures/LinUCB.pdf">here</a>. In the example of a news article recommendation, there are two user groups with their corresponding context (young and old demographics) as shown by the relevant <code class="highlighter-rouge">x_1</code> (young) or <code class="highlighter-rouge">x_2</code> (old) feature vector. Based on the learnt weights <code class="highlighter-rouge">theta</code>, we can perform matrix multiplication to predict the pay off for the recommended article.</p>
 
 <div align="center">
     <img src="/assets/img/post_11/caltech_linucb_lect.png" />
@@ -284,23 +284,20 @@ class linucb_disjoint_arm():
             covariate_string_list = line_data.split()[2:]
             data_x_array = np.array([float(covariate_elem) for covariate_elem in covariate_string_list])
 
-            # For all arms in policy
-            for i in range(linucb_policy_object.K_arms):
+            # Find policy's chosen arm based on input covariates at current time step
+            arm_index = linucb_policy_object.select_arm(data_x_array)
 
-                # Find policy's chosen arm based on input covariates at current time step
-                arm_index = linucb_policy_object.select_arm(data_x_array)
+            # Check if arm_index is the same as data_arm (ie same actions were chosen)
+            # Note that data_arms index range from 1 to 10 while policy arms index range from 0 to 9.
+            if arm_index + 1 == data_arm:
 
-                # Check if arm_index is the same as data_arm (ie same actions were chosen)
-                # Note that data_arms index range from 1 to 10 while policy arms index range from 0 to 9.
-                if arm_index + 1 == data_arm:
+                # Use reward information for the chosen arm to update
+                linucb_policy_object.linucb_arms[arm_index].reward_update(data_reward, data_x_array)
 
-                    # Use reward information for the chosen arm to update
-                    linucb_policy_object.linucb_arms[arm_index].reward_update(data_reward, data_x_array)
-
-                    # For CTR calculation
-                    aligned_time_steps += 1
-                    cumulative_rewards += data_reward
-                    aligned_ctr.append(cumulative_rewards/aligned_time_steps)
+                # For CTR calculation
+                aligned_time_steps += 1
+                cumulative_rewards += data_reward
+                aligned_ctr.append(cumulative_rewards/aligned_time_steps)
                     
     return (aligned_time_steps, cumulative_rewards, aligned_ctr, linucb_policy_object)
 </code></pre>
@@ -342,8 +339,7 @@ aligned_time_steps, cum_rewards, aligned_ctr, policy = ctr_simulator(K_arms = 10
     <img src="/assets/img/post_11/paper_hybrid_eqn.png" /> 
 </div>
 
-<p>The hybrid model has an additional feature term <code class="highlighter-rouge">z_t</code>, which comprises of shared features across various arms. According to the paper, <code class="highlighter-rouge">z_t</code> is the feature of the current user/article combina-
-tion while <code class="highlighter-rouge">β*</code> is an unknown coefficient vector common to all arms. I will not cover that in this article but I will probably do it in a separate article.</p>
+<p>The hybrid model has an additional feature term <code class="highlighter-rouge">z_t</code>, which comprises of shared features across various arms. According to the paper, <code class="highlighter-rouge">z_t</code> is the feature of the current user/article combinations while <code class="highlighter-rouge">β*</code> is an unknown coefficient vector common to all arms. I will not cover that in this article but I will probably do it in a separate article.</p>
 
 <h1 id="summary">Summary</h1>
 

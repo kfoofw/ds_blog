@@ -1,11 +1,11 @@
-I"<p>Welcome back to my second blog post on the <strong>Explore versus Exploit</strong> dilemma. To further highlight that concept, we will be using a case study of A/B testing optimisation.</p>
+I"<p>Welcome back to my second blog post on the <strong>Explore versus Exploit</strong> dilemma. To further highlight that concept, we will be using a case study of A/B testing optimisation.</p>
 
 <p>As a recap, “explore versus exploit” is part of a decision-making framework under limited resources. Each unit of resource can be spent either on exploring to obtain more information on the performance of a version (in A/B testing context), or on exploiting the version that has the best performance. With optimisation, one can minimise the wasted resources spent on a lower yielding version, and investing more in the higher performance version.</p>
 
 <p>Today’s topic will cover a possible research scenario for a mobile company looking at optimising their AB testing methodology.</p>
 
 <p><strong>Data:</strong><br />
-The dataset “cookie-cats.csv” was obtained from a Kaggle Public Dataset upload (https://www.kaggle.com/yufengsui/mobile-games-ab-testing/). It originated from a project task under Datacamp (https://www.datacamp.com/projects/184) as part of a typical AB testing project. However, my goal is different as I wish to optimise the AB testing methodology using algorithms.</p>
+The dataset “cookie-cats.csv” was obtained from <a href="https://www.kaggle.com/yufengsui/mobile-games-ab-testing/">a Kaggle Public Dataset upload</a>. It originated from a project task under <a href="https://www.datacamp.com/projects/184">Datacamp</a> as part of a typical AB testing project. However, my goal is different as I wish to optimise the AB testing methodology using algorithms.</p>
 
 <p><strong>Background/Description of dataset:</strong></p>
 <ul>
