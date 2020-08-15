@@ -57,13 +57,13 @@ A simple example of this is demonstrated in his lecture slides by Caltech Assoc 
 In matrix formulation, the above statement can be put forth as:
 
 <div align="center">
-    <img src="{{site.baseurl}}/assets/img/post_11/ucb_eqn_2.png"/> 
+    <img src="{{site.baseurl}}/assets/img/post_11/paper_eqn_2.png"/> 
 </div>
 
 Simply put, think back about the use of a linear regression model where the response variable for each arm is a reward return based on the input covariates. The coefficients `θ*_a` is unknown but with the online learning algorithm, we perform ridge regression to obtain it at each time step.
 
 <div align="center">
-    <img src="{{site.baseurl}}/assets/img/post_11/ucb_eqn_3.png"/> 
+    <img src="{{site.baseurl}}/assets/img/post_11/paper_eqn_3.png"/> 
 </div>
 
 For simplication of the equation, we can rewrite the above using two variables `A_a` and `b_a`.
