@@ -1,4 +1,4 @@
-I"ÖZ<p>Contextual bandits (CB) are more granular in terms of the way they use information. Compared to their Multi-armed Bandits (MAB) counterparts, we utilise contextual information about the observed instance in order to recommend the most effective variant.</p>
+I"ÛZ<p>Contextual bandits (CB) are more granular in terms of the way they use information. Compared to their Multi-armed Bandits (MAB) counterparts, we utilise contextual information about the observed instance in order to recommend the most effective variant.</p>
 
 <p>Letâ€™s use an example of A/B testing. Assume a website has 3 webpage variants (A, B, C), and the objective is to optimise the click through rate (CTR):</p>
 <ul>
@@ -51,13 +51,13 @@
 <p>In matrix formulation, the above statement can be put forth as:</p>
 
 <div align="center">
-    <img src="/assets/img/post_11/ucb_eqn_2.png" /> 
+    <img src="/assets/img/post_11/paper_eqn_2.png" /> 
 </div>
 
-<p>Simply put, think back about the use of a linear regression model where the response variable for each arm is a reward return based on the input covariates. The coefficients <code class="highlighter-rouge">Î¸*_a</code> is unknown but with the online learning algorithm, we perform ridge regression to obtain it at each time step.</p>
+<p>Simply put, think back about the use of a linear regression model where the response variable for each arm is a reward return based on the input covariates. The coefficients <code class="highlighter-rouge">Î¸*_a</code> are unknown but with the online learning algorithm, we perform ridge regression to obtain it at each time step.</p>
 
 <div align="center">
-    <img src="/assets/img/post_11/ucb_eqn_3.png" /> 
+    <img src="/assets/img/post_11/paper_eqn_3.png" /> 
 </div>
 
 <p>For simplication of the equation, we can rewrite the above using two variables <code class="highlighter-rouge">A_a</code> and <code class="highlighter-rouge">b_a</code>.</p>
