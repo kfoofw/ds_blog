@@ -16,9 +16,9 @@ After spending some time learning more about causality over the past few months,
     <img src="{{site.baseurl}}/assets/img/post_13/matrix_pills.jpg"/> 
 </p>
 
-What would you do knowing that you can only choose one, and only experience a single outcome without ever finding out what could have happened if you chose to take the other action? This philosophical question centered about choice actually ties in deeply with causality itself. With that in mind, let's begin with a primer on causality.
+What would you do knowing that you can only choose one, and only experience a single outcome without ever finding out what could have happened if you chose to take the other action? This philosophical question centered about choice actually lies deeply with causality itself. With that in mind, let's begin with a primer on causality.
 
-# Simple Causality Primer
+# Simple causality primer
 The idea behind causality is to identify the treatment effect (typically named as T) on an outcome response (typically named as Y). For example, if you had a headache, you would want to find out if taking a particular pill (T) would cure the headache (Y).
 
 <p align="center">
@@ -41,7 +41,7 @@ By conducting experiments at a population level, we can calculate the __average 
 
 What is intuitive or commonsensical is that in the above example, we can calculate the average treatment effect as `E(Y_1 - Y_0)` = 3/4 - 2/4 = 0.25. To arrive at that conclusion, we made some assumptions to identify the causal effects such that it can be mathematically calculated as a difference between outcomes of the different treatment groups. 
 
-# Assumptions behind Identifiability of Causal Effects
+# Assumptions behind identifiability of causal effects
 
 The identifiability of causal effects requires making some untestable assumptions called __causal assumptions__:
 
@@ -49,7 +49,7 @@ The identifiability of causal effects requires making some untestable assumption
 
 As a concept, SUTVA involves two implicit assumptions:
 1. Units do not interfere with each other. In other words, the treatment assignment of one unit does not affect the OUTCOME of another unit.
-2. There is onnly one version of treatment that is consistent across all units.
+2. There is only one version of treatment that is consistent across all units.
 
 ## Consistency
 
@@ -65,13 +65,13 @@ The positivity assumption states that for every set of values for X covariates, 
 
 If this was violated, it will mean that for a given value of X, everybody is either treated or not treated at all. Within that level of X, it will be impossible to learn the causal treatment effect.
 
-Suppose that for some values of X, the treatment was deterministic as represented by the following example where there is no control group:
+Suppose that for some values of X, the treatment assignment was deterministic as represented by the following example where there is no control group (T = 0):
 
 <p align="center">
     <img src="{{site.baseurl}}/assets/img/post_13/eqn_positivity_2.png"/> 
 </p>
 
-then we would have no observed values of Y for the control group for those values of X.
+then we would have no observed outcome values of Y for the control group for those values of X.
 
 ## Ignorability
 
@@ -97,13 +97,13 @@ Revisiting the previous example of an experiment conducted on 8 participants, we
 
 In this example, we have great balance across different values of X. Both genders (Male or Female) have 4 experimental units each, with 2 the in treatment group and 2 in the control group.
 
-With the presence of the covariate X, we can determine the __conditional average treatment effect__ (CATE) which is also known as the __heterogenous treatment effect__. With respect to the example, we have the following calculations:
+With the presence of the covariate X, we can determine the __conditional average treatment effect__ (CATE) which is determining the average treatment effect within different subpopulations out of the general population. With respect to the example, we have the following calculations:
 
 CATE for Males = `E(Y1 - Y2 | X = M)` = (1/2) - (1/2) = 0.5 - 0.5 = 0
 
 CATE for Females = `E(Y1 - Y2 | X = F)` = (2/2) - (1/2) = 1 - 0.5 = 0.5
 
-# Confounding in Causality
+# Confounding in causality
 
 To understand how confounding comes into play within causality, we can take a look at a system that has 3 variables, where X represents the confounder. This cna be represented by the graphical model shown below, where the nodes represent the variables and the directed edges represent the relationship with a causal direction.
 
@@ -131,7 +131,7 @@ When we speak about causality, we want to identify the direct causal association
 
 To understand how the indirect non-causal association comes into play, we need to understand the concept of __independence and conditional independence__ for different graphical models.
 
-# Independence and Conditional Independence of Variables
+# Independence and conditional independence of variables
 
 When variables are independent of each other, that means that knowing one variable does not change the probability of determining the other. In other words, for two independent variables A and B,
 
@@ -162,7 +162,7 @@ In a __Fork__ that stems from X and branches out to T and Y (T <- X -> Y), we ob
 </p>
 
 An example of a Fork situation can be exemplified by rainy weather (represented by X in the graph above) versus the number of vehicle accidents and number of cold flu cases (represented by T and Y). 
-- By themselves, Y and T are dependent on each other. When there is heavy rain, we may observe higher counts of vehicle accidents and cold flu cases, and vice versa.
+- By themselves, Y and T are __not independent__ on each other. When there is heavy rain (X) but assuming we did not know X, we may observe higher counts of vehicle accidents (T) and cold flu cases (Y) and thus there will be some correlation between them. Thus, knowing T will help us know more about Y, and vice versa.
 - By conditioning on rainy weather X, knowing the count of vehicles accidents T does not help you to gain more information about the number of cold flue cases Y. In other words, `P(Y|T,X) = P(Y|X)`
 
 In a __Chain__ that stems from T to X to Y (T -> X -> Y), we observe the following:
@@ -175,7 +175,7 @@ An example of a Chain situation can be exemplified by a genetic disease along an
 - By themselves, Y and T will demonstrate dependence between each other. If T has the disease, it is also likely that Y has the disease. If T does not have the disease, it is also likely that Y does not have the disease.
 - By conditioning on the middle node X (or knowing what X has), knowing if T has the disease does not help you to gain more information about Y having the disease. In other words, `P(Y|T,X) = P(Y|X)`
 
-For a graphical relationships represented by Colliders, we observe: 
+For a graphical relationships represented by __Colliders__, we observe: 
 - __Independence__ between the "side" nodes __WITHOUT__ conditioning upon the "center"/"collider" variable. 
 - Conditioning upon the "collider" variable (shown by the shading) will open up a dependence association between the "side" variables
 
@@ -191,7 +191,7 @@ An example of a Collider situation is the eye colour of parents (represented by 
     - If the child has green eye colour and one parent does not have green eye colour, we can conclude that the other parent must have green eye colour.
     - If the child does not have green eye colour and one parent does not have green eye colour, we can conclude that the other parent must not have green eye colour. 
 
-# Interventional Versus Observational Distributions
+# Interventional versus observational distributions
 
 To identify the causal effect of treatment, we need to understand the idea of interventional distributions. Intervention of the treatment variable T implies taking the whole population and subjecting them to the treatment effect. This can be represented by the "do" operator as shown by the following equation, where Y represents the potential outcome:
 
@@ -213,21 +213,27 @@ Note that the idea of interventional distributions is not the same as observatio
 
 The key difference between interventional distribution and observational distributions is that the covariate distribution between the different subpopulations may not be the same. Recall that we are interested in the __average treatment effect__ among the whole population. 
 - In __interventional distributions__, we are comparing the difference in outcomes between populations that have similar attributes/covariates, and thus it is a fair comparison of treatment effects. 
-- In __observational distributions__, this may not necessarily be the same since there might be a confounder that distorts the Treatment assignment among the subpopulations. For example, perhaps Gender (as a confounder) may affect the treatment assignment such that there is a higher proportion of males in the Treated subpopulation while there is a higher proportion of females in Control subpopulation. Thus, we cannot simply find the difference in response outcomes between the subpopulations since it is technically comparing apples and oranges.
+- In __observational distributions__, this may not necessarily be the same since there might be a confounder that distorts the Treatment assignment among the subpopulations. For example, perhaps Gender (as a confounder) may affect the treatment assignment such that there is a higher proportion of males in the Treated subpopulation while there is a higher proportion of females in Control subpopulation. Thus, we cannot simply find the difference in response outcomes between the treated and control population since they do not have the same breakdown.
 
 <p align="center">
     <img src="{{site.baseurl}}/assets/img/post_13/intervention_vs_conditioning_2.png"/> 
 </p>
 
-Also, interventional distributions are used for __causal estimands__ while observational distributions are used for __statistical estimands__. Thus, we need to incorporate causal modelling such that we can identify (or "reduce") these causal estimands (with "do" operators) into statistical estimands that are estimatable via available observational data (that do not have "do" operators). This framework (taken from the ["Introduction to Causal Inference"](https://www.bradyneal.com/causal-inference-course) textbook by Brady Neal) is shown in the following visualisation:
+Also, interventional distributions (with "do" operators) are used for __causal estimands__ while observational distributions (without any "do" operators) are used for __statistical estimands__. This might be slightly technical but here's a proposed framework (taken from the ["Introduction to Causal Inference"](https://www.bradyneal.com/causal-inference-course) textbook by Brady Neal) is shown in the following visualisation:
 
 <p align="center">
     <img src="{{site.baseurl}}/assets/img/post_13/identification_estimand_framework.png"/> 
 </p>
 
-# Causal Estimand Identification with Observational Data under various Causal Models
+For causal modelling, we want to estimate __causal estimands__. This can be done with either: 
+- interventional distributions (available by experimental data) or 
+- reducing the __causal estimands__ into __statistical estimands__ by applying an appropriate "causal model".
 
-## Causal Model with Confounding Variables
+Subsequently, to estimate the __statistical estimands__, we can use available observational data, and perform the __correct adjustments__ with it depending on the "causal model". In the next section, we will explore simple examples of the "adjustments" required for different types of causal model.
+
+# Causal estimand identification with observational data under different causal models
+
+## Causal model with confounding variables
 
 In the simple example where X is a confounding variable that affects T and Y, there is __direct causal association__ flowing from T to Y and __indirect non-causal association__ flowing from T to X to Y (as represented by the fork graphical representation which implies T and Y are not independent). 
 
@@ -255,7 +261,7 @@ As shown, this observational distribution (without any "do" operators) is the eq
 
 Thus, it is through this identification process that the __causal estimand of the ATE can be identified through a statistical estimand__, which can subsequently be estimated through observational data.
 
-## Causal Model with Collider Variables
+## Causal model with collider variables
 
 If the causal model diagram has a collider variable X between T and Y, we have to be careful in terms of how to use observational data to identify the causal estimand. Likewise, we can use what we understand about Colliders to establish the independence between T and Y.
 
