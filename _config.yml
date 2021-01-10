@@ -5,15 +5,15 @@ description: > # this means to ignore newlines until "baseurl:"
   line in _config.yml. It will appear in your document head meta (for
   Google search results) and in your feed.xml site description.
 permalink: ':title/'
-# baseurl: "" # For testing of jekyll serve. run command "bundle exec jekyll serve"
-baseurl:  "https://kfoofw.github.io" # the subpath of your site, e.g. /blog
+baseurl: "" # For testing of jekyll serve. run command "bundle exec jekyll serve"
+# baseurl:  "https://kfoofw.github.io" # the subpath of your site, e.g. /blog
 url:  # the base hostname & protocol for your site, e.g. http://example.com
 
 # Author settings
 author: Kenneth Foo Fangwei
 author-pic: kfoo.jpg
-about-author: "Hi there! My name is Kenneth Foo and I'm originally from Singapore. I’m graduated with a Master of Data Science degree from the University of British Columbia, and I'm currently working as a Senior Quantitative Engineer in [OPALai](https://www.opalai.com/). With a passion for product data science and personalisation using machine learning, my key interests lies in topics such as bandit algorithms, online learning, Bayesian statistics,
-time series prediction, and causality frameworks.""
+about-author: "Hi there! My name is Kenneth Foo and I'm originally from Singapore. I’m graduated with a Master of Data Science degree from the University of British Columbia, and I'm currently working as a Senior Quantitative Engineer in OPALai (https://www.opalai.com/). With a passion for product data science and personalisation using machine learning, my key interests lies in topics such as bandit algorithms, online learning, Bayesian statistics,
+time series prediction, and causality frameworks."
 
 # Contact links
 email: kfoofw@gmail.com # Add your Email address
