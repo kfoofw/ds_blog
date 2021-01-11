@@ -63,7 +63,7 @@ The positivity assumption states that for every set of values for X covariates, 
     <img src="{{site.baseurl}}/assets/img/post_13/eqn_positivity_1.png"/> 
 </p>
 
-If this was violated, it will mean that for a given value of X, everybody is either treated or not treated at all. Within that level of X, it will be impossible to learn the causal treatment effect.
+If this was violated, it will mean that for a given value of X, everybody is either treated or not treated at all. Within that level of X, it would be impossible to learn the causal treatment effect.
 
 Suppose that for some values of X, the treatment assignment was deterministic as represented by the following example where there is no control group (T = 0):
 
@@ -105,7 +105,7 @@ CATE for Females = `E(Y1 - Y2 | X = F)` = (2/2) - (1/2) = 1 - 0.5 = 0.5
 
 # Confounding in causality
 
-To understand how confounding comes into play within causality, we can take a look at a system that has 3 variables, where X represents the confounder. This cna be represented by the graphical model shown below, where the nodes represent the variables and the directed edges represent the relationship with a causal direction.
+To understand how confounding comes into play within causality, we can take a look at a system that has 3 variables, where X represents the confounder. This can be represented by the graphical model shown below, where the nodes represent the variables and the directed edges represent the relationship with a causal direction.
 
 <p align="center">
     <img src="{{site.baseurl}}/assets/img/post_13/dag_confounder_1.png"/> 
@@ -219,7 +219,7 @@ The key difference between interventional distribution and observational distrib
     <img src="{{site.baseurl}}/assets/img/post_13/intervention_vs_conditioning_2.png"/> 
 </p>
 
-Also, interventional distributions (with "do" operators) are used for __causal estimands__ while observational distributions (without any "do" operators) are used for __statistical estimands__. This might be slightly technical but here's a proposed framework (taken from the ["Introduction to Causal Inference"](https://www.bradyneal.com/causal-inference-course) textbook by Brady Neal) is shown in the following visualisation:
+Also, interventional distributions (with "do" operators) are used for __causal estimands__ while observational distributions (without any "do" operators) are used for __statistical estimands__. This might be slightly technical but here's a proposed framework (taken from the ["Introduction to Causal Inference"](https://www.bradyneal.com/causal-inference-course) textbook by Brady Neal) which is shown in the following visualisation:
 
 <p align="center">
     <img src="{{site.baseurl}}/assets/img/post_13/identification_estimand_framework.png"/> 
@@ -229,9 +229,11 @@ For causal modelling, we want to estimate __causal estimands__. This can be done
 - interventional distributions (available by experimental data) or 
 - reducing the __causal estimands__ into __statistical estimands__ by applying an appropriate "causal model".
 
-Subsequently, to estimate the __statistical estimands__, we can use available observational data, and perform the __correct adjustments__ with it depending on the "causal model". In the next section, we will explore simple examples of the "adjustments" required for different types of causal model.
+Subsequently, to estimate the __statistical estimands__, we can use available observational data, and perform the __correct adjustments__ with it depending on the "causal model". In the next section, we will explore simple examples of the "adjustments" required for different types of causal models.
 
 # Causal estimand identification with observational data under different causal models
+
+In this section, we will take a look at the various adjustments that are needed in order to utilise __observational data__ with the appropriate __causal model__. Note that the key assumptions remain (SUTVA, consistency, ignorability, positivity) still apply since we are trying to __identify a causal estimand__.
 
 ## Causal model with confounding variables
 
