@@ -1,4 +1,4 @@
-I"�U<p>After spending some time learning more about causality over the past few months, here’s a learning summary post about key concepts behind causality as well as related topics to causal modelling. Before diving in, let’s start with the famous scene from the Matrix where Morpheus offers the red and blue pill to Neo.</p>
+I"W<p>After spending some time learning more about causality over the past few months, here’s a learning summary post about key concepts behind causality as well as related topics to causal modelling. Before diving in, let’s start with the famous scene from the Matrix where Morpheus offers the red and blue pill to Neo.</p>
 
 <p align="center">
     <img src="/assets/img/post_13/matrix_pills.jpg" /> 
@@ -55,7 +55,7 @@
     <img src="/assets/img/post_13/eqn_positivity_1.png" /> 
 </p>
 
-<p>If this was violated, it will mean that for a given value of X, everybody is either treated or not treated at all. Within that level of X, it will be impossible to learn the causal treatment effect.</p>
+<p>If this was violated, it will mean that for a given value of X, everybody is either treated or not treated at all. Within that level of X, it would be impossible to learn the causal treatment effect.</p>
 
 <p>Suppose that for some values of X, the treatment assignment was deterministic as represented by the following example where there is no control group (T = 0):</p>
 
@@ -97,7 +97,7 @@
 
 <h1 id="confounding-in-causality">Confounding in causality</h1>
 
-<p>To understand how confounding comes into play within causality, we can take a look at a system that has 3 variables, where X represents the confounder. This cna be represented by the graphical model shown below, where the nodes represent the variables and the directed edges represent the relationship with a causal direction.</p>
+<p>To understand how confounding comes into play within causality, we can take a look at a system that has 3 variables, where X represents the confounder. This can be represented by the graphical model shown below, where the nodes represent the variables and the directed edges represent the relationship with a causal direction.</p>
 
 <p align="center">
     <img src="/assets/img/post_13/dag_confounder_1.png" /> 
@@ -228,7 +228,7 @@
     <img src="/assets/img/post_13/intervention_vs_conditioning_2.png" /> 
 </p>
 
-<p>Also, interventional distributions (with “do” operators) are used for <strong>causal estimands</strong> while observational distributions (without any “do” operators) are used for <strong>statistical estimands</strong>. This might be slightly technical but here’s a proposed framework (taken from the <a href="https://www.bradyneal.com/causal-inference-course">“Introduction to Causal Inference”</a> textbook by Brady Neal) is shown in the following visualisation:</p>
+<p>Also, interventional distributions (with “do” operators) are used for <strong>causal estimands</strong> while observational distributions (without any “do” operators) are used for <strong>statistical estimands</strong>. This might be slightly technical but here’s a proposed framework (taken from the <a href="https://www.bradyneal.com/causal-inference-course">“Introduction to Causal Inference”</a> textbook by Brady Neal) which is shown in the following visualisation:</p>
 
 <p align="center">
     <img src="/assets/img/post_13/identification_estimand_framework.png" /> 
@@ -240,9 +240,11 @@
   <li>reducing the <strong>causal estimands</strong> into <strong>statistical estimands</strong> by applying an appropriate “causal model”.</li>
 </ul>
 
-<p>Subsequently, to estimate the <strong>statistical estimands</strong>, we can use available observational data, and perform the <strong>correct adjustments</strong> with it depending on the “causal model”. In the next section, we will explore simple examples of the “adjustments” required for different types of causal model.</p>
+<p>Subsequently, to estimate the <strong>statistical estimands</strong>, we can use available observational data, and perform the <strong>correct adjustments</strong> with it depending on the “causal model”. In the next section, we will explore simple examples of the “adjustments” required for different types of causal models.</p>
 
 <h1 id="causal-estimand-identification-with-observational-data-under-different-causal-models">Causal estimand identification with observational data under different causal models</h1>
+
+<p>In this section, we will take a look at the various adjustments that are needed in order to utilise <strong>observational data</strong> with the appropriate <strong>causal model</strong>. Note that the key assumptions remain (SUTVA, consistency, ignorability, positivity) still apply since we are trying to <strong>identify a causal estimand</strong>.</p>
 
 <h2 id="causal-model-with-confounding-variables">Causal model with confounding variables</h2>
 

@@ -4,7 +4,7 @@ title:  "Causality, Confounding and Collider Bias"
 date:   2020-12-30
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
 img: /post_13/intervention_vs_conditioning_2.png # Add image post (optional)
-tags: [Causality]
+tags: [Causality, Experimentation]
 author: Kenneth Foo # Add name author (optional)
 titleformat: dark
 tagformat: dark
